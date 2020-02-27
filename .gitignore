@@ -1,2 +1,6 @@
 # Logs file
 *.log
+
+# NODE
+node_modules/
+packages/*/lib
