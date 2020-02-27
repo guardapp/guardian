@@ -11,6 +11,12 @@ npm i
 lerna bootstrap
 ```
 
+## Test
+
+```bash
+lerna run test
+```
+
 ## Run
 
 TODO
