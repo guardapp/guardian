@@ -1,0 +1,28 @@
+{
+  "name": "user",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "amirz <amirzahavi90@gmail.com>",
+  "homepage": "https://github.com/amirzahavi/guardian#readme",
+  "license": "ISC",
+  "main": "lib/user.js",
+  "typings": "lib/user.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amirzahavi/guardian.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/amirzahavi/guardian/issues"
+  }
+}
