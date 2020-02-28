@@ -1,7 +1,6 @@
-'use strict';
+const {Server} = require("@guardian/server");
 
-module.exports = user;
+const server = new Server('user');
 
-function user() {
-    // TODO
-}
+
+module.exports = {server};
