@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "@guardian/logger",
   "version": "0.0.0",
   "description": "log application messages in formated way",
   "author": "amirz <amirzahavi90@gmail.com>",
@@ -20,9 +20,13 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "test": "jest"
+    "tsc:watch": "tsc --watch",
+    "test": "DEBUG=* jest"
   },
   "bugs": {
     "url": "https://github.com/amirzahavi/guardian/issues"
+  },
+  "dependencies": {
+    "debug": "^4.1.1"
   }
 }
