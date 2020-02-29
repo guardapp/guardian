@@ -19,9 +19,9 @@
     "url": "git+https://github.com/amirzahavi/guardian.git"
   },
   "scripts": {
-    "tsc": "tsc",
-    "tsc:watch": "tsc --watch",
-    "test": "DEBUG=* jest"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/amirzahavi/guardian/issues"

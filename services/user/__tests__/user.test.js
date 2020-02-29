@@ -2,6 +2,6 @@
 
 const user = require('..');
 
-describe('user', () => {
+describe.skip('user', () => {
     it('needs tests');
 });

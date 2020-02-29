@@ -1,5 +1,4 @@
-import { Logger } from "../src/logger";
-
+const { Logger } = require('..');
 
 describe('logger', () => {
     it('should exists', () => {

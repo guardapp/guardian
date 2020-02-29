@@ -11,7 +11,6 @@ export class Logger {
     private debugger: Debugger;
 
     constructor(name: string){
-        console.log(debug);
         debug.formatters = {
             l: (level: LEVEL) => LEVEL[level],
             t: (date: Date) => `${date.toLocaleDateString()}-${date.toLocaleTimeString()}`

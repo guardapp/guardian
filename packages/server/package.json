@@ -19,8 +19,9 @@
     "url": "git+https://github.com/amirzahavi/guardian.git"
   },
   "scripts": {
-    "tsc": "tsc",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/amirzahavi/guardian/issues"
