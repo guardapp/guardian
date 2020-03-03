@@ -21,4 +21,5 @@ server.listen(process.env.PORT);
 ## Information
 
 A default route GET `/healthcheck` that response 200 OK, is added to the server
-
+all route defenistions have a built in authentication.
+(to bypass authentication use the underlyning express `server.app.get()`)

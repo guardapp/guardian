@@ -5,7 +5,7 @@
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/amirzahavi/guardian#readme",
   "license": "ISC",
-  "main": "lib/user.js",  
+  "main": "lib/user.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -25,6 +25,8 @@
     "url": "https://github.com/amirzahavi/guardian/issues"
   },
   "dependencies": {
-    "@guardian/server": "^0.0.0"
+    "@guardian/server": "^0.0.0",    
+    "jsonwebtoken": "^8.5.1",
+    "passport-local": "^1.0.0"
   }
 }

@@ -67,8 +67,9 @@ describe('server', () => {
 
     it('should have a use route', () => {
         const s = new Server('test');
-        s.use('/use-route', null);
-        expect(s.app.use.mock.calls.length).toEqual(1);
-        expect(s.app.use.mock.calls[0][0]).toEqual('/use-route');
+        const routeHandlerSpy = jest.fn();
+        s.use(routeHandlerSpy);
+        expect(s.app.use.mock.calls.length).toBeGreaterThanOrEqual(1);
+        expect(s.app.use.mock.calls[s.app.use.mock.calls.length-1][1]).toStrictEqual([routeHandlerSpy]);
     });
 });
