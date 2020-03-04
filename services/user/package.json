@@ -1,6 +1,6 @@
 {
   "name": "user",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.3-alpha.0",
   "description": "> TODO: description",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/amirzahavi/guardian#readme",
@@ -25,7 +25,7 @@
     "url": "https://github.com/amirzahavi/guardian/issues"
   },
   "dependencies": {
-    "@guardian/server": "^0.0.2-alpha.0",
+    "@guardian/server": "^0.0.3-alpha.0",
     "jsonwebtoken": "^8.5.1",
     "passport-local": "^1.0.0"
   }
