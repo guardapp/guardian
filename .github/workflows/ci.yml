@@ -16,8 +16,7 @@ jobs:
       with:
         node-version: 12
     - run: npm install
-    - run: npx lerna bootstrap
-    - run: npx lerna run build
-    - run: npx lerna run test
+    - run: npm run build
+    - run: npm test
       env:
         CI: true
