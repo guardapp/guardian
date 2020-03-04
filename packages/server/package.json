@@ -14,10 +14,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amirzahavi/guardian.git"
