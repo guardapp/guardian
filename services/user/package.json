@@ -18,8 +18,8 @@
     "url": "git+https://github.com/amirzahavi/guardian.git"
   },
   "scripts": {
-    "start:dev": "DEBUG=* node index.js",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "node index.js",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/amirzahavi/guardian/issues"
