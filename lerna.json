@@ -9,7 +9,7 @@
       "ignoreChanges": [
         "*.md"
       ],
-      "message": "new release",
+      "message": "chore(release): publish %s",
       "registry": "https://npm.pkg.github.com"
     }
   }
