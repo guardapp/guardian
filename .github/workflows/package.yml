@@ -21,6 +21,10 @@ jobs:
         node-version: 12
     - run: npm install
     - run: npm run build
+    - name: Git user
+      run: |
+        git config --global user.name ${{GITHUB_ACTOR}}
+        git config --global user.email '${{GITHUB_ACTOR}}@github.com'
     - run: npm run publish
       env:
         CI: true
