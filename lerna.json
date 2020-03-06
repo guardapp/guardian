@@ -7,7 +7,7 @@
   "command": {
     "publish": {
       "ignoreChanges": [
-        "*.1md"
+        "*.md"
       ],
       "message": "chore(release): publish %s",
       "registry": "https://github.com/guardapp/guardian.git"

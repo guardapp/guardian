@@ -5,7 +5,7 @@ Base server for micro-services
 ## Usage
 
 ```javascript
-const {Server} = require('server');
+const {Server} = require('@guardapp/server');
 
 const server = new Server('my-service');
 
