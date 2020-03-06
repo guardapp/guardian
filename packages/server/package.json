@@ -1,6 +1,6 @@
 {
   "name": "@guardian/server",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "basic express server",
   "keywords": [],
   "author": "amirz <amirzahavi90@gmail.com>",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/amirzahavi/guardian#readme",
   "dependencies": {
-    "@guardapp/logger": "^0.1.18",
+    "@guardapp/logger": "^0.1.19",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
