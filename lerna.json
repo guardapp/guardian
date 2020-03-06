@@ -10,7 +10,7 @@
         "*.md"
       ],
       "message": "chore(release): publish %s",
-      "registry": "https://npm.pkg.github.com"
+      "registry": "https://npm.pkg.github.com/guardapp"
     }
   }
 }
