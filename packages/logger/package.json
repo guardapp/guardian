@@ -1,6 +1,6 @@
 {
   "name": "@guardian/logger",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "log application messages in formated way",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/amirzahavi/guardian#readme",
