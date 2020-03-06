@@ -20,7 +20,8 @@ jobs:
       with:
         node-version: 12
         registry-url: 'https://npm.pkg.github.com'
-    - run: npm ci
+        scope: 'amirzahavi'
+    - run: npm install
     - run: npm run build
     - name: Git user
       run: |
