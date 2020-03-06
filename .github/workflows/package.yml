@@ -21,9 +21,11 @@ jobs:
         node-version: 12
     - run: npm install
     - run: npm run build
-    - run: |
+    - name: Git user
+      run: |
         git config --global user.name ${GITHUB_ACTOR}
-        git config --global user.email ${GITHUB_ACTOR}@gmail.com
-        npm run publish
+        git config --global user.email ${GITHUB_ACTOR}@github.com
+    - run: npm run publish
       env:
         CI: true
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
