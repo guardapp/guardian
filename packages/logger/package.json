@@ -1,9 +1,9 @@
 {
-  "name": "@amirzahavi/guardian-logger",
+  "name": "@guardapp/logger",
   "version": "0.1.13",
   "description": "log application messages in formated way",
   "author": "amirz <amirzahavi90@gmail.com>",
-  "homepage": "https://github.com/amirzahavi/guardian/guardian-logger#readme",
+  "homepage": "https://github.com/guardapp/logger#readme",
   "license": "ISC",
   "main": "lib/logger.js",
   "typings": "lib/logger.d.js",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirzahavi/guardian/guardian-logger.git"
+    "url": "git+https://github.com/guardapp/logger.git"
   },
   "scripts": {
     "build": "tsc",
@@ -24,7 +24,7 @@
     "test": "jest"
   },
   "bugs": {
-    "url": "https://github.com/amirzahavi/guardian/guardian-logger/issues"
+    "url": "https://github.com/guardapp/logger/issues"
   },
   "dependencies": {
     "debug": "^4.1.1"

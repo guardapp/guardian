@@ -5,7 +5,7 @@ Logger package to log to console in a formatted way
 ## Usage
 
 ```javascript
-import {Logger} from "@guardian/logger";
+import {Logger} from "@guardapp/logger";
 
 const logger = new Logger("app name"); // unique for every app/lib
 

@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 
-import { Logger } from "@amirzahavi/guardian-logger";
+import { Logger } from "@guardapp/logger";
 import { helthcheck } from "./routes";
 import { logEveryRequest } from "./middlewares/logEveryRequest";
 import { authenticate, passport } from "./authorization";
