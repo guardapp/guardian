@@ -1,4 +1,7 @@
-# `logger`
+# `@guardapp/logger`
+
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+![CI](https://github.com/guardapp/guardian/workflows/CI/badge.svg)
 
 Logger package to log to console in a formatted way
 
