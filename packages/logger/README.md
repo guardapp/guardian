@@ -14,3 +14,4 @@ logger.info("message");
 logger.error("message");
 logger.fatal("message");
 ```
+1
