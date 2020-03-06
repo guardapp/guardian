@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Logger } from "@guardian/logger/lib/logger";
+import { Logger } from "@amirzahavi/guardian-logger";
 
 export function logEveryRequest(logger: Logger) {
     return (req: Request, res: Response, next: NextFunction) => {
