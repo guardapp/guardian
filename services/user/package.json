@@ -1,9 +1,10 @@
 {
   "name": "user",
+  "private": true,
   "version": "0.1.21",
-  "description": "> TODO: description",
+  "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
-  "homepage": "https://github.com/amirzahavi/guardian#readme",
+  "homepage": "https://github.com/guarapp/guardian#readme",
   "license": "ISC",
   "main": "lib/user.js",
   "directories": {
@@ -15,17 +16,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirzahavi/guardian.git"
+    "url": "git+https://github.com/guarapp/guardian.git"
   },
   "scripts": {
     "start": "node index.js",
     "test": "jest"
   },
   "bugs": {
-    "url": "https://github.com/amirzahavi/guardian/issues"
+    "url": "https://github.com/guarapp/guardian/issues"
   },
   "dependencies": {
-    "@guardian/server": "^0.1.21",
+    "@guarapp/server": "^0.1.21",
     "jsonwebtoken": "^8.5.1",
     "passport-local": "^1.0.0"
   }
