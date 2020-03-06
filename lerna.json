@@ -10,7 +10,7 @@
         "*.1md"
       ],
       "message": "chore(release): publish %s",
-      "registry": "https://npm.pkg.github.com/guardapp"
+      "registry": "git@github.com:guardapp/guardian.git"
     }
   }
 }
