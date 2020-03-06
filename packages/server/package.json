@@ -1,6 +1,6 @@
 {
   "name": "@guardian/server",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "basic express server",
   "keywords": [],
   "author": "amirz <amirzahavi90@gmail.com>",
