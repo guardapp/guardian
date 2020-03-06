@@ -1,7 +1,7 @@
 {
   "name": "user",
   "private": true,
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
