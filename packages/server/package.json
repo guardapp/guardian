@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/server",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "basic express server",
   "keywords": [],
   "author": "amirz <amirzahavi90@gmail.com>",

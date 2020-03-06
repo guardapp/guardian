@@ -1,7 +1,7 @@
 {
   "name": "user",
   "private": true,
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guarapp/guardian#readme",
