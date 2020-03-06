@@ -1,4 +1,4 @@
-const {Server, passport} = require("@guardian/server");
+const {Server, passport} = require("@guardapp/server");
 const authenticate = require('./authentication');
 
 const server = new Server('user');
