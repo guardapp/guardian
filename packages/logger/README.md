@@ -14,6 +14,3 @@ logger.info("message");
 logger.error("message");
 logger.fatal("message");
 ```
-## Environment variables
-
-- DEBUG - (string) regex of the app (e.g - DEBUG=*  for all logs)
