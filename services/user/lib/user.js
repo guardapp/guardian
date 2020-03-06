@@ -9,7 +9,7 @@ server.app.post('/login', authenticate(passport), (req, res) => {
   })
 });
 
-server.get('/', (req, res) => {
+server.get('/me', (req, res) => {
   res.json(req.user);
 });
 
