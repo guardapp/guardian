@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "jest"
+    "test": "jest -coverage"
   },
   "bugs": {
     "url": "https://github.com/guardapp/guardian/issues"

@@ -8,8 +8,10 @@
     "publish": {
       "ignoreChanges": [
         "*.md",
+        "jest.config.js",        
         ".github/**",
-        "lerna.json"
+        "lerna.json",
+        "tsconfig.json"
       ],
       "message": "chore(release): publish %s",
       "registry": "https://npm.pkg.github.com"
