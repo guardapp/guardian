@@ -24,7 +24,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: code-coverage-report
-        path: coverage/lcov-report/index.html
+        path: coverage/lcov-report
     - name: Git user
       run: |
         git config --global user.name ${GITHUB_ACTOR}

@@ -1,7 +1,7 @@
 {
   "name": "user",
   "private": true,
-  "version": "0.1.34",
+  "version": "0.1.36",
   "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
@@ -26,7 +26,7 @@
     "url": "https://github.com/guardapp/guardian/issues"
   },
   "dependencies": {
-    "@guardapp/server": "^0.1.34",
+    "@guardapp/server": "^0.1.36",
     "jsonwebtoken": "^8.5.1",
     "passport-local": "^1.0.0"
   }
