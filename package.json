@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "jest --coverage",
     "publish": "lerna publish patch --yes --ignore-prepublish --no-verify-access"
   },
   "devDependencies": {
