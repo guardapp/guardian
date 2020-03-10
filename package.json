@@ -4,6 +4,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "build": "lerna run build",
+    "lint": "npx eslint .",
     "test": "jest --coverage",
     "publish": "echo \"not active\"",
     "publish1": "lerna publish patch --yes --ignore-prepublish --no-verify-access"
