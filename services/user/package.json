@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "@guardapp/user",
   "private": true,
   "version": "0.1.36",
   "description": "a user micro-service",
@@ -28,6 +28,8 @@
   "dependencies": {
     "@guardapp/server": "^0.1.36",
     "jsonwebtoken": "^8.5.1",
-    "passport-local": "^1.0.0"
+    "mysql2": "^2.1.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.21.5"
   }
 }

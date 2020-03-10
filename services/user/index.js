@@ -1,3 +1,3 @@
-const {server} = require('./lib/user');
+const {server} = require('./lib');
 
 server.listen(8080);
