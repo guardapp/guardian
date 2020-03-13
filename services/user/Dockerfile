@@ -6,7 +6,6 @@ COPY package*.json ./
 
 # npm login + install dependencies + del cred
 RUN echo -e "//npm.pkg.github.com/:_authToken=$NPM_TOKEN\n@guardapp:registry=https://npm.pkg.github.com" > .npmrc && \
-    cat .npmrc && \
     npm install --verbose && \
     rm -rf .npmrc
 
@@ -19,8 +18,6 @@ COPY . /usr/src/app
 
 # expose app
 EXPOSE 8080
-
-RUN ls
 
 ENTRYPOINT ["node", "index.js"]
 

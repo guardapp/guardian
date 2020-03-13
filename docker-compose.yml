@@ -1,0 +1,23 @@
+version: '3'
+services:
+    mysql:
+        image: mysql
+        ports:
+            - 3306:3306
+        environment: 
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+            - MYSQL_DATABASE=public
+    
+    user:
+        build: 
+            context: ./services/user
+            args: 
+                NPM_TOKEN: $NPM_TOKEN
+        environment: 
+            - DB_USERNAME=root
+        ports: 
+            - 8080:8080
+        links: 
+            - mysql:user_db
+        depends_on:
+            - mysql

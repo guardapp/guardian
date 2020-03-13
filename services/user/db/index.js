@@ -11,6 +11,8 @@ module.exports = async logger => {
   const dbLogger = logger.extend('db');
   const sequelize = new Sequelize('public', process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     dialect: 'mysql',
+    host: 'mysql',
+    retry: {max: 3},
     logging: msg => dbLogger.debug(msg)
   });
 

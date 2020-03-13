@@ -3,8 +3,10 @@ const authenticate = require('./authentication');
 const db = require('../db');
 
 const server = new Server('user');
+let sequelize;
 (async () => {
-  await db(server.logger);
+  const seq = await db(server.logger);
+  sequelize = seq.sequelize;
 })();
 
 server.app.get('/me2', async (req, res) => {
