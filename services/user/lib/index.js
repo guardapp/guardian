@@ -1,16 +1,16 @@
 const {Server, passport} = require('@guardapp/server');
+const {sql} = require('@guardapp/sql');
 const authenticate = require('./authentication');
-const db = require('../db');
 
 const server = new Server('user');
-let sequelize;
+let user;
 (async () => {
-  const seq = await db(server.logger);
-  sequelize = seq.sequelize;
+  const {user: userModel} = await sql({maxRetries: 3});
+  user = userModel;
 })();
 
 server.app.get('/me2', async (req, res) => {
-  const user = await sequelize.models.user.findOne();
+  const user = await user.findOne();
   res.json(user);
 });
 

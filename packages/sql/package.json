@@ -1,12 +1,11 @@
 {
-  "name": "@guardapp/user",
-  "private": true,
+  "name": "@guardapp/sql",
   "version": "0.1.37",
-  "description": "a user micro-service",
+  "description": "Abstraction layer to interact with a SQL DBs",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
   "license": "ISC",
-  "main": "lib/user.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -19,18 +18,16 @@
     "url": "git+https://github.com/guardapp/guardian.git"
   },
   "scripts": {
-    "start": "node index.js",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
     "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/guardapp/guardian/issues"
   },
   "dependencies": {
-    "@guardapp/server": "^0.1.37",
-    "@guardapp/sql": "^0.1.37",
-    "jsonwebtoken": "^8.5.1",
+    "@guardapp/logger": "^0.1.37",
     "mysql2": "^2.1.0",
-    "passport-local": "^1.0.0",
     "sequelize": "^5.21.5"
   }
 }
