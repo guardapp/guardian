@@ -6,7 +6,9 @@ Centralize of configuration sources
 
 ```javascript
 // VALUE=myvalue node index.js
-const config = require('config');
+const {init} = require('config');
+
+const config = await init();
 
 console.log(config.VALUE); // 'myvalue'
 console.log(config.NOT_FOUND); // undefined

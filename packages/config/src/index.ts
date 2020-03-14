@@ -1,6 +1,12 @@
 import {config} from 'dotenv';
 
+let processed = false;
+
 export function init() {
+  if (processed) return Promise.resolve(process.env);
+
   config();
-  return Promise.resolve();
+  processed = true;
+
+  return Promise.resolve(process.env);
 }

@@ -1,5 +1,6 @@
 import {Sequelize, Model} from 'sequelize';
 import {Logger} from '@guardapp/logger';
+import {init} from '@guardapp/config';
 import {load} from './loader';
 
 import {dirname, resolve} from 'path';
@@ -16,7 +17,7 @@ export interface SqlOptions {
 
 export {Model};
 
-export function sql(options: SqlOptions) {
+export async function sql(options: SqlOptions) {
   const {
     dialect = 'mysql',
     maxRetries = 2,
@@ -24,13 +25,15 @@ export function sql(options: SqlOptions) {
     seedPath = resolve(APP_ROOT_DIR, 'seeders', 'sql.js')
   } = options;
 
+  const config = await init();
+
   const {
     GUARD_SQL_HOST,
     GUARD_SQL_PORT,
     GUARD_SQL_DB,
     GUARD_SQL_USER,
     GUARD_SQL_PW
-  } = process.env;
+  } = config;
 
   const sequelize = new Sequelize({
     host: GUARD_SQL_HOST,
@@ -43,5 +46,5 @@ export function sql(options: SqlOptions) {
     logging: msg => logger.debug(msg)
   });
 
-  return load(sequelize, modelPath, seedPath);
+  return await load(sequelize, modelPath, seedPath);
 }
