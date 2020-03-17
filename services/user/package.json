@@ -26,6 +26,7 @@
     "url": "https://github.com/guardapp/guardian/issues"
   },
   "dependencies": {
+    "@guardapp/config": "^0.1.37",
     "@guardapp/server": "^0.1.37",
     "@guardapp/sql": "^0.1.37",
     "jsonwebtoken": "^8.5.1",
