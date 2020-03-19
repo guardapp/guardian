@@ -1,27 +1,20 @@
-import * as passport from "passport";
-import { Strategy as JwtStrategy, StrategyOptions, ExtractJwt } from "passport-jwt";
+import * as passport from 'passport';
+import {Strategy as JwtStrategy, StrategyOptions, ExtractJwt} from 'passport-jwt';
 
-var opts : StrategyOptions = {
+const ISSUER = 'guardian@user';
+
+function authenticate() {
+  const opts : StrategyOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey:'shhh-my-secret',
-    issuer: 'guardian@user'
-};
+    secretOrKey: process.env.GUARD_JET_TOKEN,
+    issuer: ISSUER
+  };
 
-passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-   done(null, jwt_payload);
-   /* User.findOne({id: jwt_payload.sub}, function(err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            return done(null, user);
-        } else {
-            return done(null, false);
-            // or you could create a new account
-        }
-    });
-    */
-}));
+  passport.use(new JwtStrategy(opts, (jwt, done) => {
+    done(null, {id: jwt.id, username: jwt.sub, scopes: jwt.scopes});
+  }));
 
-const authenticate = passport.authenticate('jwt', {session: false});
-export {authenticate, passport};
+  return passport.authenticate('jwt', {session: false});
+}
+
+export {authenticate, passport, ISSUER};

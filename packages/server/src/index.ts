@@ -3,13 +3,14 @@ import * as bodyParser from 'body-parser';
 export * from './errors';
 
 import {Logger} from '@guardapp/logger';
+import {init} from '@guardapp/config';
 import {helthcheck} from './routes';
 import {logEveryRequest} from './middlewares/logEveryRequest';
-import {authenticate, passport} from './authorization';
+import {authenticate, passport, ISSUER} from './authorization';
 import {ErrorHandler} from './middlewares/errorHandler';
 
-export {passport};
-export class Server {
+export {passport, ISSUER};
+class Server {
     app: express.Express;
     logger: Logger;
 
@@ -42,7 +43,7 @@ export class Server {
     }
 
     get(route: string, ...handlers: [express.RequestHandler]) {
-      this.app.get(route, authenticate, this.wrapHandlers(handlers));
+      this.app.get(route, authenticate(), this.wrapHandlers(handlers));
     }
 
     post(route: string, ...handlers: [express.RequestHandler]) {
@@ -83,4 +84,9 @@ export class Server {
         }
       });
     }
+}
+
+export async function createServer(service: string) {
+  await init();
+  return new Server(service);
 }

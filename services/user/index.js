@@ -1,3 +1,8 @@
-const {server} = require('./lib');
+const createServer = require('./lib');
 
-server.listen(8080);
+createServer()
+    .then(server => server.listen(8080))
+    .catch(error => {
+      console.error(error);
+      process.exit(1);
+    });

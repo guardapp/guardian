@@ -1,4 +1,7 @@
-'use strict';
+const crypto = require('crypto');
+const hash = crypto.createHash('sha256');
+
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     username: {
@@ -14,7 +17,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNulls: false,
       set(value) {
-        this.setDataValue('password', '!' + value);
+        // create salt
+        const buf = crypto.randomBytes(16);
+        const salt = buf.toString('hex');
+        this.setDataValue('salt', salt);
+        // hash password with salt
+        hash.update(salt + value);
+        this.setDataValue('password', hash.digest('hex'));
+      }
+    },
+    salt: {
+      type: DataTypes.STRING,
+      allowNulls: false,
+      set(value) {
+        throw new Error('readonly value');
       }
     }
   }, {underscored: true});

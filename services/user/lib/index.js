@@ -1,26 +1,20 @@
-const {Server, passport, NotFound} = require('@guardapp/server');
-const {sql} = require('@guardapp/sql');
-const {init} = require('@guardapp/config');
+const {createServer, passport, NotFound} = require('@guardapp/server');
+const db = require('./db');
 const authenticate = require('./authentication');
 
-const server = new Server('user');
-let userModel;
-(async () => {
-  await init();
-  const {user} = await sql({maxRetries: 3});
-  userModel = user;
-})();
 
-server.app.post('/login', authenticate(passport), (req, res) => {
-  res.json({
-    token: req.user,
+module.exports = async () => {
+  const server = await createServer('user');
+
+  server.app.post('/login', authenticate(passport), (req, res) => {
+    res.json({
+      token: req.user,
+    });
   });
-});
 
-server.get('/me', async (req, res) => {
-  const u = await userModel.findByPk(req.user.id);
-  if (!u) throw new NotFound('user is not found');
-  res.json(u);
-});
+  server.get('/me', (req, res) => {
+    res.json(req.user);
+  });
 
-module.exports = {server};
+  return server;
+};
