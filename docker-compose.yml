@@ -13,8 +13,9 @@ services:
             context: ./services/user
             args: 
                 NPM_TOKEN: $NPM_TOKEN
+        env_file: .env
         environment: 
-            - DB_USERNAME=root
+            - GUARD_SQL_HOST=user_db
         ports: 
             - 8080:8080
         links: 
