@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/server",
-  "version": "0.1.37",
+  "version": "0.1.38",
   "description": "basic express server",
   "keywords": [],
   "author": "amirz <amirzahavi90@gmail.com>",
@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/guardapp/guardian#readme",
   "dependencies": {
-    "@guardapp/config": "^0.1.37",
-    "@guardapp/logger": "^0.1.37",
+    "@guardapp/config": "^0.1.38",
+    "@guardapp/logger": "^0.1.38",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"

@@ -1,7 +1,7 @@
 {
   "name": "@guardapp/user",
   "private": true,
-  "version": "0.1.37",
+  "version": "0.1.38",
   "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
@@ -26,9 +26,9 @@
     "url": "https://github.com/guardapp/guardian/issues"
   },
   "dependencies": {
-    "@guardapp/config": "^0.1.37",
-    "@guardapp/server": "^0.1.37",
-    "@guardapp/sql": "^0.1.37",
+    "@guardapp/config": "^0.1.38",
+    "@guardapp/server": "^0.1.38",
+    "@guardapp/sql": "^0.1.38",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
     "passport-local": "^1.0.0",
