@@ -22,11 +22,10 @@ export async function load(sequelize: Sequelize, modelPath: string, seedPath: st
     }
   });
 
-  /* TODO: NEED TO CHANGE IN PRODUCTION  */
-  await sequelize.sync({force: true});
-
-  /* TODO: NEED TO CHANGE IN PRODUCTION  */
-  await seed(sequelize, seedPath);
+  if (process.env.SEED === 'true') {
+    await sequelize.sync({force: true});
+    await seed(sequelize, seedPath);
+  }
 
   return db;
 }

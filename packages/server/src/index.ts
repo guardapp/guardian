@@ -5,11 +5,10 @@ export * from './errors';
 import {Logger} from '@guardapp/logger';
 import {init} from '@guardapp/config';
 import {helthcheck} from './routes';
-import {logEveryRequest} from './middlewares/logEveryRequest';
 import {authenticate, passport, ISSUER} from './authorization';
-import {ErrorHandler} from './middlewares/errorHandler';
+import {ErrorHandler, logEveryRequest, authorize} from './middlewares';
 
-export {passport, ISSUER};
+export {passport, ISSUER, express, authorize};
 class Server {
     app: express.Express;
     logger: Logger;
@@ -47,19 +46,19 @@ class Server {
     }
 
     post(route: string, ...handlers: [express.RequestHandler]) {
-      this.app.post(route, authenticate, this.wrapHandlers(handlers));
+      this.app.post(route, authenticate(), this.wrapHandlers(handlers));
     }
 
     put(route: string, ...handlers: [express.RequestHandler]) {
-      this.app.put(route, authenticate, this.wrapHandlers(handlers));
+      this.app.put(route, authenticate(), this.wrapHandlers(handlers));
     }
 
     delete(route: string, ...handlers: [express.RequestHandler]) {
-      this.app.delete(route, authenticate, this.wrapHandlers(handlers));
+      this.app.delete(route, authenticate(), this.wrapHandlers(handlers));
     }
 
     use(...router: [express.RequestHandler]) {
-      this.app.use(authenticate, this.wrapHandlers(router));
+      this.app.use(authenticate(), this.wrapHandlers(router));
     }
 
     listen(port: number) {
@@ -68,21 +67,26 @@ class Server {
       // listern to port
       this.app.listen(port, () => {
         this.logger.debug(`service listening on port [:${port}]`);
-        if (this.app._router && this.app._router.stack) {
-          const routes = this.app._router.stack.filter(({route}) => route)
-              .map(({route}) => route);
-
-          if (routes && routes.length > 0) {
-            this.logger.debug(`registered routes:`);
-            routes.forEach(route => {
-              const methods = Object.keys(route.methods);
-              for (const method of methods) {
-                this.logger.debug(`[${method.toUpperCase()}] => ${route.path}`);
-              }
-            });
-          }
-        }
+        this.logger.debug(`registered routes:`);
+        this.printRoutes(this.app._router);
       });
+    }
+
+    private printRoutes(router) {
+      if (router && router.stack) {
+        router.stack.forEach(layer => {
+          if (layer.name === 'router') {
+            this.printRoutes(layer.handle);
+          } else if (layer.route) {
+            const methods = Object.keys(layer.route.methods);
+            for (const method of methods) {
+              if (!method.startsWith('_')) {
+                this.logger.debug(`[${method.toUpperCase()}] => ${layer.route.path}`);
+              }
+            }
+          }
+        });
+      }
     }
 }
 

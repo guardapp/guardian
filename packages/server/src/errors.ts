@@ -27,3 +27,11 @@ export class NotFound extends ServerError {
     super(message);
   }
 }
+
+export class Forbidden extends ServerError {
+  code = 403;
+
+  constructor(message = 'Forbidden') {
+    super(message);
+  }
+}

@@ -1,6 +1,7 @@
 const {createServer, passport, NotFound} = require('@guardapp/server');
 const db = require('./db');
 const authenticate = require('./authentication');
+const usersRoute = require('./routes/user.route');
 
 
 module.exports = async () => {
@@ -15,6 +16,8 @@ module.exports = async () => {
   server.get('/me', (req, res) => {
     res.json(req.user);
   });
+
+  server.use(usersRoute);
 
   return server;
 };

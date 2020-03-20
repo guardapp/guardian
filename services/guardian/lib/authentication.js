@@ -7,11 +7,11 @@ const db = require('./db');
 const INVALID_USER_MESSAGE = 'username or password are incorrect';
 
 module.exports = passport => {
-  passport.use(new LocalStrtegy(async (username, password, done) => {
+  passport.use(new LocalStrtegy({usernameField: 'email'}, async (email, password, done) => {
     try {
       const seq = await db();
       const user = await seq.models.user.findOne({
-        where: {username},
+        where: {email},
         include: [seq.models.role]
       });
 
@@ -28,9 +28,10 @@ module.exports = passport => {
             id: user.id,
             scopes: user.roles.map(role => role.name)
           },
-          process.env.GUARD_JET_TOKEN, {
+          process.env.GUARD_JET_TOKEN,
+          {
             issuer: ISSUER,
-            subject: user.username,
+            subject: user.email,
             expiresIn: Math.floor(Date.now() / 1000) + (60 * 60)
           },
           done
