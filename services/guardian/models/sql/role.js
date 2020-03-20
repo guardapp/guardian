@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const role = sequelize.define('role', {
-    name: DataTypes.STRING
+    name: DataTypes.ENUM('ADMIN', 'PARENT', 'PRINCIPAL', 'TEACHER')
   }, {
     underscored: true,
   });

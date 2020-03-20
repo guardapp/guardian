@@ -1,5 +1,5 @@
 {
-  "name": "@guardapp/user",
+  "name": "@guardapp/guardian",
   "private": true,
   "version": "0.1.38",
   "description": "a user micro-service",
