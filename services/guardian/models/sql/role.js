@@ -1,7 +1,8 @@
-'use strict';
+const {ROLES} = require('../../lib/constants');
+
 module.exports = (sequelize, DataTypes) => {
   const role = sequelize.define('role', {
-    name: DataTypes.ENUM('ADMIN', 'PARENT', 'PRINCIPAL', 'TEACHER')
+    name: DataTypes.ENUM(...ROLES)
   }, {
     underscored: true,
   });
