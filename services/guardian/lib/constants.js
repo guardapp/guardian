@@ -1,3 +1,10 @@
+const ROLES = [
+  'PARENT',
+  'TEACHER',
+  'PRINCIPAL',
+  'ADMIN'
+];
+
 module.exports = {
-  ROLES: ['ADMIN', 'PARENT', 'PRINCIPAL', 'TEACHER']
+  ROLES
 };

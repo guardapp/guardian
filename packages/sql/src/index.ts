@@ -1,6 +1,6 @@
 import {Sequelize, Model} from 'sequelize';
 import {Logger} from '@guardapp/logger';
-import * as config from '@guardapp/config';
+import {config} from '@guardapp/config';
 import {load} from './loader';
 
 import {dirname, resolve} from 'path';
@@ -27,7 +27,8 @@ export class SQL {
   }
 
   async init() {
-    const conf = await config.init();
+    if (this.models) return this.models;
+    config();
 
     const {
       GUARD_SQL_HOST,
@@ -35,7 +36,7 @@ export class SQL {
       GUARD_SQL_DB,
       GUARD_SQL_USER,
       GUARD_SQL_PW
-    } = conf;
+    } = process.env;
 
     this.sequelize = new Sequelize({
       host: GUARD_SQL_HOST,

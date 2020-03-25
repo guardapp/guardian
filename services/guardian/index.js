@@ -1,8 +1,15 @@
-const createServer = require('./lib');
+const {Server} = require('@guardapp/server');
+const routes = require('./lib/routes');
+const {typeDefs, resolvers} = require('./graphql');
 
-createServer()
-    .then(server => server.listen(8080))
-    .catch(error => {
-      console.error(error);
-      process.exit(1);
-    });
+
+const server = new Server({
+  serviceName: 'guardapp',
+  typeDefs,
+  resolvers,
+  sqlOptions: true
+});
+
+routes(server);
+
+server.listen(8080);

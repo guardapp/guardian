@@ -1,4 +1,4 @@
-import * as passport from 'passport';
+import passport from 'passport';
 import {Strategy as JwtStrategy, StrategyOptions, ExtractJwt} from 'passport-jwt';
 
 const ISSUER = 'guardian@user';
@@ -11,7 +11,7 @@ function authenticate() {
   };
 
   passport.use(new JwtStrategy(opts, (jwt, done) => {
-    done(null, {id: jwt.id, username: jwt.sub, scopes: jwt.scopes});
+    done(null, {id: jwt.id, email: jwt.sub, roles: jwt.scopes});
   }));
 
   return passport.authenticate('jwt', {session: false});

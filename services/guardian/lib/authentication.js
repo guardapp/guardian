@@ -1,18 +1,20 @@
 const crypto = require('crypto');
 const {Strategy: LocalStrtegy} = require('passport-local');
 const jwt = require('jsonwebtoken');
-const {BadRequest, ISSUER} = require('@guardapp/server');
-const db = require('./db');
+const {ISSUER, passport} = require('@guardapp/server');
+const {BadRequest} = require('./errors');
 
 const INVALID_USER_MESSAGE = 'username or password are incorrect';
 
-module.exports = passport => {
+module.exports = (sql) => {
   passport.use(new LocalStrtegy({usernameField: 'email'}, async (email, password, done) => {
     try {
-      const seq = await db();
-      const user = await seq.models.user.findOne({
+      if (!sql.models) {
+        await sql.init();
+      }
+      const user = await sql.models.user.findOne({
         where: {email},
-        include: [seq.models.role]
+        include: [sql.models.role]
       });
 
       // user exits?
