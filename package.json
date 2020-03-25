@@ -6,8 +6,8 @@
     "build": "lerna run build",
     "lint": "npx eslint .",
     "test": "jest --coverage",
-    "publish": "echo \"not active\"",
-    "publish1": "lerna publish patch --yes --ignore-prepublish --no-verify-access"
+    "publish1": "echo \"not active\"",
+    "publish": "lerna publish patch --yes --ignore-prepublish --no-verify-access"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",

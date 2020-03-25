@@ -16,8 +16,10 @@ WORKDIR /usr/src/app
 # COPY source code
 COPY . /usr/src/app
 
+RUN ls
+
 # expose app
 EXPOSE 8080
 
-ENTRYPOINT ["node", "index.js"]
+ENTRYPOINT ["node", "--inspect", "index.js"]
 

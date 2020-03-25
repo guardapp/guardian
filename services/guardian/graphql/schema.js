@@ -9,5 +9,4 @@ type User {
 
 type Query{
   me: User!
-}
-`;
+}`;
