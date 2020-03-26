@@ -1,7 +1,29 @@
 const crypto = require('crypto');
+const {Model} = require('@guardapp/server');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+  class User extends Model {
+    static associate(models) {
+      this.belongsToMany(models.role, {through: 'user_roles'});
+      this.hasMany(models.child, {as: 'Children', foreignKey: 'parent_id'});
+      this.hasOne(models.kindergarten, {foreignKey: 'principal_id'});
+      this.hasOne(models.class, {foreignKey: 'teacher_id'});
+    };
+
+    static getAll(role, paginate) {
+      const where = role ? {name: role} : null;
+      return User.findAll({
+        include: [{
+          model: sequelize.models.role,
+          where
+        }],
+        limit: paginate.limit,
+        offset: paginate.offset
+      });
+    }
+  }
+
+  User.init({
     email: {
       type: DataTypes.STRING,
       unique: true,
@@ -31,12 +53,17 @@ module.exports = (sequelize, DataTypes) => {
         throw new Error('readonly value');
       }
     }
-  }, {underscored: true});
-  User.associate = function(models) {
-    User.belongsToMany(models.role, {through: 'user_roles'});
-    User.hasMany(models.child, {as: 'Children', foreignKey: 'parent_id'});
-    User.hasOne(models.kindergarten, {foreignKey: 'principal_id'});
-    User.hasOne(models.class, {foreignKey: 'teacher_id'});
-  };
+  }, {
+    sequelize,
+    modelName: 'user',
+    underscored: true
+  });
+
+  // User.associate = function(models) {
+  //   User.belongsToMany(models.role, {through: 'user_roles'});
+  //   User.hasMany(models.child, {as: 'Children', foreignKey: 'parent_id'});
+  //   User.hasOne(models.kindergarten, {foreignKey: 'principal_id'});
+  //   User.hasOne(models.class, {foreignKey: 'teacher_id'});
+  // };
   return User;
 };

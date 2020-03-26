@@ -6,10 +6,11 @@ import {
   ApolloServerExpressConfig,
   UserInputError,
   AuthenticationError} from 'apollo-server-express';
+import DataLoader from 'dataloader';
 
 import {Logger} from '@guardapp/logger';
 import {config} from '@guardapp/config';
-import {SQL, SqlOptions, Model} from '@guardapp/sql';
+import {SQL, SqlOptions, Model, Op} from '@guardapp/sql';
 import {authenticate, passport, ISSUER} from './authorization';
 
 export {
@@ -18,7 +19,9 @@ export {
   express,
   bodyParser,
   Model,
+  Op,
   gql,
+  DataLoader,
   UserInputError,
   AuthenticationError
 };

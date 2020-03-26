@@ -29,7 +29,7 @@
     "@guardapp/config": "^0.1.39",
     "@guardapp/server": "^0.1.39",
     "@guardapp/sql": "^0.1.39",
-    "faker": "^4.1.0",
+    "faker": "^4.1.0",    
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
     "passport-local": "^1.0.0",

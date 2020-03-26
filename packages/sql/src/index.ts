@@ -1,4 +1,4 @@
-import {Sequelize, Model} from 'sequelize';
+import {Sequelize, Op, Model} from 'sequelize';
 import {Logger} from '@guardapp/logger';
 import {config} from '@guardapp/config';
 import {load} from './loader';
@@ -15,7 +15,7 @@ export interface SqlOptions {
     seedPath?: string;
 }
 
-export {Model};
+export {Model, Op};
 
 export class SQL {
   sequelize: Sequelize;

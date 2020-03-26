@@ -1,5 +1,33 @@
+const {Op, Model, DataLoader} = require('@guardapp/server');
+
 module.exports = (sequelize, DataTypes) => {
-  const Child = sequelize.define('child', {
+  class Child extends Model {
+    static associate(models) {
+      this.belongsTo(models.user, {as: 'parent'});
+      this.belongsTo(models.class);
+    };
+
+    static get loader() {
+      return loader;
+    }
+  };
+
+  const loader = new DataLoader(async (parentIds) => {
+    const children = await Child.findAll({
+      include: [{
+        model: sequelize.models.user,
+        as: 'parent',
+        where: {
+          id: {
+            [Op.in]: parentIds
+          }
+        }
+      }]
+    });
+    return parentIds.map(id => children.filter(child => child.parent.id == id));
+  });
+
+  Child.init({
     name: {
       type: DataTypes.STRING,
       allowNulls: false
@@ -13,10 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         max: 20
       }
     }
-  }, {underscored: true, timestamps: false});
-  Child.associate = function(models) {
-    Child.belongsTo(models.user, {as: 'Parent'});
-    Child.belongsTo(models.class);
-  };
+  }, {sequelize, modelName: 'child', underscored: true, timestamps: false});
+
   return Child;
 };
