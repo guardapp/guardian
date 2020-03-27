@@ -1,20 +1,16 @@
+const {authorize} = require('@guardapp/server');
+
 function extractRole(parent) {
   return parent.roles.map(role => role.name);
 }
-
-// function authorize(...roles, resolver) {
-//   return (parent, args, ctx, info) {
-//     if (!ctx)
-//   }
-// }
 
 module.exports = {
   Query: {
     // users
     me: async (_, args, ctx) => ctx.user,
-    users: (_, {role, paginate}, {models}) => {
+    users: authorize('ADMIN', (_, {role, paginate}, {models}) => {
       return models.user.getAll(role, paginate);
-    },
+    }),
     user: (_, {id}, {models}) => {
       return models.user.get(id);
     },
