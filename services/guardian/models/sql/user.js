@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static getAll(role, paginate) {
       const where = role ? {name: role} : null;
-      return this.findAll({
+      return this.findAndCountAll({
         include: [{
           model: sequelize.models.role,
           where

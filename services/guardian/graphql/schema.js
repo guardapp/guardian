@@ -2,9 +2,14 @@ const {gql} = require('@guardapp/server');
 
 module.exports = gql`
 
-input Paginate {
+input PaginateInput {
   limit: Int!
   offset: Int!
+}
+
+interface Paginate {
+  total: Int!
+  hasMore: Boolean!
 }
 
 enum Role {
@@ -17,6 +22,12 @@ enum Role {
 interface User {
   id: ID!
   email: String!
+}
+
+type UserPaginate {
+  data: [User!]
+  total: Int!
+  hasMore: Boolean!
 }
 
 type Admin implements User {
@@ -57,12 +68,21 @@ type Class {
   capacity: Int!
 }
 
+type ClassPaginate implements Paginate {
+  data: [Class!]
+  total: Int!
+  hasMore: Boolean!
+}
+
 type Query{
   # users
   me: User!
-  users(role: Role, paginate: Paginate = {limit: 10, offset: 1}): [User!] 
+  users(role: Role, paginate: PaginateInput = {limit: 10, offset: 1}): UserPaginate
   user(id: ID!): User
 
   # child
   child(id: ID!): Child
+
+  # class
+  classes(paginate: PaginateInput = {limit: 10, offset: 1}): ClassPaginate
 }`;

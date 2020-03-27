@@ -1,6 +1,21 @@
-'use strict';
+const {Model} = require('@guardapp/server');
 module.exports = (sequelize, DataTypes) => {
-  const Class = sequelize.define('class', {
+  class Class extends Model {
+    static associate(models) {
+      this.hasMany(models.child);
+      this.belongsTo(models.user, {as: 'teacher'});
+      this.belongsTo(models.kindergarten);
+    };
+
+    static getAll(paginate) {
+      return this.findAndCountAll({
+        limit: paginate.limit,
+        offset: paginate.offset
+      });
+    }
+  }
+
+  Class.init({
     name: {
       type: DataTypes.STRING,
       allowNulls: false
@@ -14,13 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
+    sequelize,
+    modelName: 'class',
     underscored: true,
     timestamps: false
   });
-  Class.associate = function(models) {
-    Class.hasMany(models.child);
-    Class.belongsTo(models.user, {as: 'Teacher'});
-    Class.belongsTo(models.kindergarten);
-  };
+
   return Class;
 };
