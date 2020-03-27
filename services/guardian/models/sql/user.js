@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const {Model} = require('@guardapp/server');
+const {Model, Op, DataLoader} = require('@guardapp/server');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.kindergarten, {foreignKey: 'principal_id'});
       this.hasOne(models.class, {foreignKey: 'teacher_id'});
     };
+
+    static get teacherLoader() {
+      return teacherLoader;
+    }
+
+    static get principalLoader() {
+      return principalLoader;
+    }
 
     static get(id) {
       return this.findByPk(id, {
@@ -28,6 +36,32 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
+  const teacherLoader = new DataLoader(async classIds => {
+    const teachers = await User.findAll({
+      include: [{
+        model: sequelize.models.class,
+        where: {id: {[Op.in]: classIds}}
+      }, {
+        model: sequelize.models.role,
+        where: {name: 'TEACHER'}
+      }]
+    });
+    return classIds.map(classId => teachers.find(teacher => teacher.class.id == classId));
+  });
+
+  const principalLoader = new DataLoader(async kindergartenIds => {
+    const principals = await User.findAll({
+      include: [{
+        model: sequelize.models.kindergarten,
+        where: {id: {[Op.in]: kindergartenIds}}
+      }, {
+        model: sequelize.models.role,
+        where: {name: 'PRINCIPAL'}
+      }]
+    });
+    return kindergartenIds.map(id => principals.find(p => p.kindergarten.id == id));
+  });
 
   User.init({
     email: {
@@ -65,11 +99,5 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true
   });
 
-  // User.associate = function(models) {
-  //   User.belongsToMany(models.role, {through: 'user_roles'});
-  //   User.hasMany(models.child, {as: 'Children', foreignKey: 'parent_id'});
-  //   User.hasOne(models.kindergarten, {foreignKey: 'principal_id'});
-  //   User.hasOne(models.class, {foreignKey: 'teacher_id'});
-  // };
   return User;
 };

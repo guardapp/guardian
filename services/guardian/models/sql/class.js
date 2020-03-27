@@ -1,4 +1,4 @@
-const {Model} = require('@guardapp/server');
+const {Model, Op, DataLoader} = require('@guardapp/server');
 module.exports = (sequelize, DataTypes) => {
   class Class extends Model {
     static associate(models) {
@@ -13,7 +13,25 @@ module.exports = (sequelize, DataTypes) => {
         offset: paginate.offset
       });
     }
+
+    static get(id) {
+      return this.findByPk(id);
+    }
+
+    static get classLoader() {
+      return classLoader;
+    }
   }
+
+  const classLoader = new DataLoader(async kindergartenIds => {
+    const classes = Class.findAll({
+      include: [{
+        model: sequelize.models.kindergarten,
+        where: {id: {[Op.in]: kindergartenIds}}
+      }]
+    });
+    return kindergartenIds.map(id => classes.filter(c => c.kindergarten.id == id));
+  });
 
   Class.init({
     name: {

@@ -7,11 +7,6 @@ input PaginateInput {
   offset: Int!
 }
 
-interface Paginate {
-  total: Int!
-  hasMore: Boolean!
-}
-
 enum Role {
   ADMIN,
   PRINCIPAL,
@@ -66,10 +61,29 @@ type Class {
   id: ID!
   name: String!
   capacity: Int!
+  children: [Child!]
+  teacher: Teacher!
+  kindergarten: Kindergarten!
 }
 
-type ClassPaginate implements Paginate {
+type ClassPaginate{
   data: [Class!]
+  total: Int!
+  hasMore: Boolean!
+}
+
+type Kindergarten {
+  id: ID!
+  name: String!
+  city: String
+  address: String
+  country: String
+  classes: [Class!]
+  principal: Principal!
+}
+
+type KindergartenPaginate {
+  data: [Kindergarten!]
   total: Int!
   hasMore: Boolean!
 }
@@ -85,4 +99,9 @@ type Query{
 
   # class
   classes(paginate: PaginateInput = {limit: 10, offset: 1}): ClassPaginate
+  class(id: ID): Class
+
+  # kindergartens
+  kindergartens(paginate: PaginateInput = {limit: 10, offset: 1}): KindergartenPaginate
+  kindergarten(id: ID!): Kindergarten
 }`;

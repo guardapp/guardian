@@ -7,8 +7,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.class);
     };
 
-    static get loader() {
-      return loader;
+    static get loaderByParent() {
+      return loaderByParent;
+    }
+
+    static get loaderByClass() {
+      return loaderByClass;
     }
 
     static get(id) {
@@ -26,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  const loader = new DataLoader(async (parentIds) => {
+  const loaderByParent = new DataLoader(async (parentIds) => {
     const children = await Child.findAll({
       include: [{
         model: sequelize.models.user,
@@ -39,6 +43,16 @@ module.exports = (sequelize, DataTypes) => {
       }]
     });
     return parentIds.map(id => children.filter(child => child.parent.id == id));
+  });
+
+  const loaderByClass = new DataLoader(async (classIds) => {
+    const children = await Child.findAll({
+      include: [{
+        model: sequelize.models.class,
+        where: {id: {[Op.in]: classIds}}
+      }]
+    });
+    return classIds.map(classId => children.filter(child => child.class.id == classId));
   });
 
   Child.init({
