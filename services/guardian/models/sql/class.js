@@ -1,9 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Class = sequelize.define('class', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNulls: false
+    },
     capacity: {
       type: DataTypes.INTEGER,
+      allowNulls: false,
       validate: {
         min: 5,
         max: 100

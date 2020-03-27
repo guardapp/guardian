@@ -17,33 +17,28 @@ enum Role {
 interface User {
   id: ID!
   email: String!
-  roles: [Role]
 }
 
 type Admin implements User {
   id: ID!
-  email: String!
-  roles: [Role]  
+  email: String!  
 }
 
 type Parent implements User {
   id: ID!
   email: String!
-  roles: [Role]
   children: [Child]!
 } 
 
 type Teacher implements User {
   id: ID!
   email: String!
-  roles: [Role]  
   classes: [String]
 }
 
 type Principal implements User {
   id: ID!
   email: String!
-  roles: [Role] 
   kindergarten: [String]
 }
 
@@ -52,6 +47,14 @@ type Child {
   name: String!
   profile: String!
   age: Float!
+  parent: Parent!
+  class: Class
+}
+
+type Class {
+  id: ID!
+  name: String!
+  capacity: Int!
 }
 
 type Query{
@@ -62,5 +65,4 @@ type Query{
 
   # child
   child(id: ID!): Child
-  parentChildren(parentId: ID!): [Child!]
 }`;

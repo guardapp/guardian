@@ -1,14 +1,10 @@
-const {authorize} = require('@guardapp/server');
-
-function extractRole(parent) {
-  return parent.roles.map(role => role.name);
-}
+const {adminOnly} = require('@guardapp/server');
 
 module.exports = {
   Query: {
     // users
     me: async (_, args, ctx) => ctx.user,
-    users: authorize('ADMIN', (_, {role, paginate}, {models}) => {
+    users: adminOnly((_, {role, paginate}, {models}) => {
       return models.user.getAll(role, paginate);
     }),
     user: (_, {id}, {models}) => {
@@ -17,9 +13,6 @@ module.exports = {
     // child
     child: (_, {id}, {models}) => {
       return models.child.get(id);
-    },
-    parentChildren: (_, {parentId}, {models}) => {
-      return models.child.getByParent(parentId);
     }
   },
   User: {
@@ -36,19 +29,17 @@ module.exports = {
       return 'Parent';
     }
   },
-  Admin: {
-    roles: extractRole
-  },
-  Principal: {
-    roles: extractRole
-  },
-  Teacher: {
-    roles: extractRole
-  },
   Parent: {
-    roles: extractRole,
     children: async (parent, args, {models}) => {
       return await models.child.loader.load(parent.id);
+    }
+  },
+  Child: {
+    parent: (child) => {
+      return child.getParent();
+    },
+    class: (child) => {
+      return child.getClass();
     }
   }
 };
