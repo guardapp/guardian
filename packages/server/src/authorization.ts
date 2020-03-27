@@ -24,3 +24,15 @@ export function authorize<TSource, TArgs = Record<string, any>>(minRole: RoleWei
     return resolver(parent, args, ctx, info);
   };
 }
+
+export function adminOnly<TSource, TArgs = Record<string, any>>(resolver: IFieldResolver<TSource, RequestContext, TArgs>) {
+  return authorize(RoleWeight.ADMIN, resolver);
+}
+
+export function minPrincipal<TSource, TArgs = Record<string, any>>(resolver: IFieldResolver<TSource, RequestContext, TArgs>) {
+  return authorize(RoleWeight.PRINCIPAL, resolver);
+}
+
+export function minTeacher<TSource, TArgs = Record<string, any>>(resolver: IFieldResolver<TSource, RequestContext, TArgs>) {
+  return authorize(RoleWeight.TEACHER, resolver);
+}

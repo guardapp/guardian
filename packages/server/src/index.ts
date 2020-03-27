@@ -12,8 +12,8 @@ import {Logger} from '@guardapp/logger';
 import {config} from '@guardapp/config';
 import {SQL, SqlOptions, Model, Op} from '@guardapp/sql';
 import {authenticate, passport, ISSUER} from './authentication';
-import {authorize} from './authorization';
 
+export * from './authorization';
 export {
   passport,
   ISSUER,
@@ -24,8 +24,7 @@ export {
   gql,
   DataLoader,
   UserInputError,
-  ValidationError,
-  authorize
+  ValidationError
 };
 
 export interface ServerOptions extends ApolloServerExpressConfig {
