@@ -10,9 +10,15 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.class, {foreignKey: 'teacher_id'});
     };
 
+    static get(id) {
+      return this.findByPk(id, {
+        include: [sequelize.models.role]
+      });
+    }
+
     static getAll(role, paginate) {
       const where = role ? {name: role} : null;
-      return User.findAll({
+      return this.findAll({
         include: [{
           model: sequelize.models.role,
           where

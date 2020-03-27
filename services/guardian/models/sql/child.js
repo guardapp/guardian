@@ -10,6 +10,20 @@ module.exports = (sequelize, DataTypes) => {
     static get loader() {
       return loader;
     }
+
+    static get(id) {
+      return this.findByPk(id);
+    }
+
+    static getByParent(parentId) {
+      return this.findAll({
+        include: [{
+          model: sequelize.models.user,
+          where: {id: parentId},
+          as: 'parent'
+        }]
+      });
+    }
   };
 
   const loader = new DataLoader(async (parentIds) => {

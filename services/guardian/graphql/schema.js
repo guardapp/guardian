@@ -55,6 +55,12 @@ type Child {
 }
 
 type Query{
+  # users
   me: User!
-  users(role: Role, paginate: Paginate = {limit: 10, offset: 1}): [User]!
+  users(role: Role, paginate: Paginate = {limit: 10, offset: 1}): [User!] 
+  user(id: ID!): User
+
+  # child
+  child(id: ID!): Child
+  parentChildren(parentId: ID!): [Child!]
 }`;
