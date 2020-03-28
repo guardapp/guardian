@@ -8,6 +8,19 @@ function toPagination({offset, limit}, {rows, count}) {
   };
 }
 
+function resolveUserRole(user) {
+  if (user.roles.some(role => role.name === 'ADMIN')) {
+    return 'Admin';
+  }
+  if (user.roles.some(role => role.name === 'PRINCIPAL')) {
+    return 'Principal';
+  }
+  if (user.roles.some(role => role.name === 'TEACHER')) {
+    return 'Teacher';
+  }
+  return 'Parent';
+}
+
 module.exports = {
   Query: {
     // users
@@ -38,18 +51,7 @@ module.exports = {
     },
   },
   User: {
-    __resolveType: (user) => {
-      if (user.roles.some(role => role.name === 'ADMIN')) {
-        return 'Admin';
-      }
-      if (user.roles.some(role => role.name === 'PRINCIPAL')) {
-        return 'Principal';
-      }
-      if (user.roles.some(role => role.name === 'TEACHER')) {
-        return 'Teacher';
-      }
-      return 'Parent';
-    }
+    __resolveType: resolveUserRole
   },
   Parent: {
     children: async (parent, _, {models}) => {
@@ -82,5 +84,19 @@ module.exports = {
     principal: async (parent, _, {models}) => {
       return await models.user.principalLoader.load(parent.id);
     },
+  },
+  AddUserResult: {
+    __resolveType: result => {
+      if (result.message) return 'EmailExists';
+      return resolveUserRole(result);
+    }
+  },
+  Mutation: {
+    addUser: adminOnly((_, {user}, {models}) => {
+      return models.user.addUser(user);
+    }),
+    deleteUser: adminOnly((_, {id}, {models}) => {
+      return models.user.delete(id);
+    }),
   }
 };

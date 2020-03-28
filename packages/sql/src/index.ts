@@ -51,6 +51,6 @@ export class SQL {
 
     const modelPath = this.options.modelPath || resolve(APP_ROOT_DIR, 'models', 'sql');
     const seedPath = this.options.seedPath || resolve(APP_ROOT_DIR, 'seeders', 'sql.js');
-    return await load(this.sequelize, modelPath, seedPath);
+    return await load(logger, this.sequelize, modelPath, seedPath);
   }
 }

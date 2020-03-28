@@ -19,6 +19,14 @@ interface User {
   email: String!
 }
 
+input AddUserInput {
+  email: String!
+  roles: [Role!]!
+}
+
+type EmailExists {message: String!}
+union AddUserResult = EmailExists | Admin | Parent | Teacher | Principal
+
 type UserPaginate {
   data: [User!]
   total: Int!
@@ -88,7 +96,7 @@ type KindergartenPaginate {
   hasMore: Boolean!
 }
 
-type Query{
+type Query {
   # users
   me: User!
   users(role: Role, paginate: PaginateInput = {limit: 10, offset: 1}): UserPaginate
@@ -104,4 +112,12 @@ type Query{
   # kindergartens
   kindergartens(paginate: PaginateInput = {limit: 10, offset: 1}): KindergartenPaginate
   kindergarten(id: ID!): Kindergarten
-}`;
+}
+
+type Mutation {
+  # users
+  addUser(user: AddUserInput): AddUserResult
+  deleteUser(id: ID!): Boolean
+}
+
+`;

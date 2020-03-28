@@ -2,8 +2,9 @@ import {join} from 'path';
 import {readdirSync} from 'fs';
 import {Sequelize, Model} from 'sequelize/types';
 import {seed} from './seeder';
+import {Logger} from '@guardapp/logger';
 
-export async function load(sequelize: Sequelize, modelPath: string, seedPath: string):
+export async function load(logger: Logger, sequelize: Sequelize, modelPath: string, seedPath: string):
     Promise<Record<string, Model>> {
   const db = {};
 
@@ -12,8 +13,12 @@ export async function load(sequelize: Sequelize, modelPath: string, seedPath: st
         return (file.indexOf('.') !== 0) && (file.slice(-3) === '.js');
       })
       .forEach(file => {
-        const model = sequelize['import'](join(modelPath, file));
-        db[model.name] = model;
+        try {
+          const model = sequelize['import'](join(modelPath, file));
+          db[model.name] = model;
+        } catch (err) {
+          logger.error(err.stack);
+        }
       });
 
   Object.keys(db).forEach(modelName => {

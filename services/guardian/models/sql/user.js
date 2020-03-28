@@ -35,6 +35,31 @@ module.exports = (sequelize, DataTypes) => {
         offset: paginate.offset
       });
     }
+
+    static async addUser({email, roles}) {
+      const [user, notFound] = await this.findOrBuild({
+        where: {email},
+        defaults: {
+          password: '1234'
+        }
+      });
+      if (!notFound) {
+        return {message: 'user is already exists'};
+      }
+      const _roles = await sequelize.models.role.findAll({
+        where: {name: {[Op.in]: roles}}
+      });
+      await user.save();
+      await user.setRoles(_roles);
+
+      user.roles = _roles;
+      return user;
+    }
+
+    static async delete(id) {
+      const rows = await this.destroy({where: {id}});
+      return rows === 1;
+    }
   }
 
   const teacherLoader = new DataLoader(async classIds => {
