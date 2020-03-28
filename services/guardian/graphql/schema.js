@@ -119,5 +119,4 @@ type Mutation {
   addUser(user: AddUserInput): AddUserResult
   deleteUser(id: ID!): Boolean
 }
-
 `;
