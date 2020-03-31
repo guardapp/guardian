@@ -1,17 +1,9 @@
 import React from 'react';
-// import './App.css';
-import Navigation from "./components/Navigation";
-import Login from './components/Login';
-import {Container} from '@material-ui/core';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <Navigation/>
-      <Container>
-        <Login/>
-      </Container>
-    </div>
+      <Login></Login>
   );
 }
 
