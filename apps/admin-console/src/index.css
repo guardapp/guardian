@@ -1,26 +1,84 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
-  --clr-primary: #C7406B;
-  --clr-primary-dark: #1A0D1B;
-  --clr-secondary: #CC8757;
-  --clr-trinary: #B995A4;
-  --clr-light: #F7F7F5;
+	--clr-primary: #c7406b;
+	--clr-primary-dark: #1a0d1b;
+	--clr-secondary: #cc8757;
+	--clr-trinary: #b995a4;
+	--clr-light: #f7f7f5;
 }
 
-body {  
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
+	font-family: Roboto, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  background-color: var(--clr-primary-dark);
-  color: var(--clr-light);
+	background-color: var(--clr-primary-dark);
+	color: var(--clr-light);
+}
+
+input {
+	color: var(--clr-secondary);
+	font-size: 1em;
+	font-weight: bold;
+	display: inline-block;
+	line-height: 2.5;
+	border: none;
+	border-radius: 0.3rem;
+	width: 20rem;
+	outline: none;
+	padding: 0 0.5rem;
+	border: transparent solid 2px;
+	transition: border 0.3s ease-in;
+}
+
+input:focus {
+	border: var(--clr-primary) solid 2px;
+}
+
+input.gap {
+	margin-bottom: 2rem;
+}
+
+input.error {
+	border: var(--clr-primary) solid 2px;
+	border-right-width: thick;
+}
+
+div.error {
+	color: var(--clr-primary);
+}
+
+button[type='submit'] {
+	color: var(--clr-light);
+	text-transform: uppercase;
+	font-family: inherit;
+	font-size: 1em;
+	background-color: transparent;
+	border: var(--clr-primary) solid 2px;
+	width: 10rem;
+	padding: 0.5rem 1rem;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+button[type='submit']:hover {
+	background-color: var(--clr-primary);
+}
+
+button[type='submit']:disabled {
+	color: var(--clr-trinary);
+	border-color: var(--clr-trinary);
+}
+
+button[type='submit']:disabled:hover {
+	background-color: inherit;
+	cursor: not-allowed;
 }
