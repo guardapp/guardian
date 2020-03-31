@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 import Center from '../layouts/Center';
-// import Row from "../layouts/Row";
-// import Input from '../components/Input';
+import Notification from '../components/Notification';
 
 const loginFormSchema = yup.object().shape({
 	email: yup
@@ -16,6 +15,7 @@ const loginFormSchema = yup.object().shape({
 });
 
 export default function Login() {
+	const [show, showNotification] = useState(false);
 	return (
 		<main>
 			<h1>Admin Console</h1>
@@ -23,11 +23,28 @@ export default function Login() {
 				<Formik
 					initialValues={{ email: '', password: '' }}
 					validationSchema={loginFormSchema}
-					onSubmit={(values, { setSubmitting }) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
+					onSubmit={async (values, { setSubmitting }) => {
+						try {
+							if (show) {
+								showNotification(false);
+							}
+							const response = await fetch('http://localhost:8090/login', {
+								method: 'POST',
+								mode: 'cors',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(values)
+							});
+
+							const body = await response.json();
+							console.log(body);
+						} catch (err) {
+							console.error(err);
+							showNotification(true);
+						} finally {
 							setSubmitting(false);
-						}, 400);
+						}
 					}}
 				>
 					{({ isSubmitting, errors, isValid }) => (
@@ -51,6 +68,9 @@ export default function Login() {
 					)}
 				</Formik>
 			</Center>
+			<Notification show={show}>
+				<span>Connection Error!</span>
+			</Notification>
 		</main>
 	);
 }
