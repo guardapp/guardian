@@ -2,3 +2,4 @@ jest.config.js
 coverage
 node_modules
 packages/*/lib/*
+apps

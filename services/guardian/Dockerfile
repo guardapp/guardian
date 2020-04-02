@@ -19,5 +19,5 @@ COPY . /usr/src/app
 # expose app
 EXPOSE 8080
 
-ENTRYPOINT ["node", "--inspect", "index.js"]
+ENTRYPOINT ["node", "index.js"]
 
