@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './Login.css';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+
+import { useAuth, ACTIONS } from '../utils/auth';
 
 import Center from '../layouts/Center';
 import Notification from '../components/Notification';
@@ -15,9 +18,11 @@ const loginFormSchema = yup.object().shape({
 });
 
 export default function Login() {
-	const [show, showNotification] = useState(false);
+	const [notification, notify] = useState({});
+	const [_, dispatch] = useAuth();
+
 	return (
-		<main>
+		<main className="login">
 			<h1>Admin Console</h1>
 			<Center>
 				<Formik
@@ -25,10 +30,10 @@ export default function Login() {
 					validationSchema={loginFormSchema}
 					onSubmit={async (values, { setSubmitting }) => {
 						try {
-							if (show) {
-								showNotification(false);
+							if (notification.show) {
+								notify(false);
 							}
-							const response = await fetch('http://localhost:8090/login', {
+							const response = await fetch('http://192.168.1.160:8080/login', {
 								method: 'POST',
 								mode: 'cors',
 								headers: {
@@ -38,10 +43,15 @@ export default function Login() {
 							});
 
 							const body = await response.json();
-							console.log(body);
+							if (body.error) {
+								notify({ show: true, message: body.error });
+							} else {
+								dispatch({ type: ACTIONS.LOGIN, token: body.token });
+								window.location = '/users';
+							}
 						} catch (err) {
 							console.error(err);
-							showNotification(true);
+							notify({ show: true, message: 'Connection Error!' });
 						} finally {
 							setSubmitting(false);
 						}
@@ -68,8 +78,8 @@ export default function Login() {
 					)}
 				</Formik>
 			</Center>
-			<Notification show={show}>
-				<span>Connection Error!</span>
+			<Notification show={notification.show}>
+				<span>{notification.message}</span>
 			</Notification>
 		</main>
 	);

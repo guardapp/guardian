@@ -23,6 +23,10 @@ body {
 	color: var(--clr-light);
 }
 
+main {
+	position: relative;
+}
+
 input {
 	color: var(--clr-secondary);
 	font-size: 1em;
