@@ -1,8 +1,10 @@
 const {bodyParser} = require('@guardapp/server');
+const cors = require('cors');
 const {BadRequest} = require('./errors');
 const authentication = require('./authentication');
 
 module.exports = server => {
+  server.app.use(cors());
   server.app.use(bodyParser.json());
 
   server.app.post('/login', authentication(server.sql), (req, res) => {

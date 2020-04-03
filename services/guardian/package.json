@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@guardapp/server": "^0.1.40",
+    "cors": "^2.8.5",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
