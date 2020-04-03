@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/logger",
-  "version": "0.1.42",
+  "version": "0.1.43",
   "description": "log application messages in formated way",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
