@@ -1,20 +1,18 @@
-main {
-    width: 100vw;
-    height: 100vh;
-    padding: 5rem;
+.login {
+	padding: 5rem;
 }
 
 h1 {
-    text-align: center;
-    color: var(--clr-secondary);
+	text-align: center;
+	color: var(--clr-secondary);
 }
 
 form {
-    background-color: #271629;
-    border-radius: 1rem;
-    padding: 2rem;
+	background-color: #271629;
+	border-radius: 1rem;
+	padding: 2rem;
 
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
+	display: flex;
+	gap: 2rem;
+	flex-direction: column;
 }

@@ -1,7 +1,7 @@
 {
   "name": "@guardapp/guardian",
   "private": true,
-  "version": "0.1.41",
+  "version": "0.1.43",
   "description": "a user micro-service",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
@@ -25,8 +25,8 @@
   "bugs": {
     "url": "https://github.com/guardapp/guardian/issues"
   },
-  "dependencies": {
-    "@guardapp/server": "^0.1.40",
+  "dependencies": {    
+    "@guardapp/server": "^0.1.43",
     "cors": "^2.8.5",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",

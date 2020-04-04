@@ -1,0 +1,32 @@
+.sidenav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	height: 100vh;
+	background: var(--clr-trinary);
+}
+
+.sidenav__item {
+	text-decoration: none;
+	color: var(--clr-light);
+	width: 5rem;
+	height: 5rem;
+	font-size: 3em;
+	display: grid;
+	align-items: center;
+	justify-items: center;
+}
+
+.sidenav__item--active {
+	background-color: var(--clr-primary);
+}
+
+.sidenav__item--bottom {
+	margin-top: auto;
+}
+
+.sidenav__item:focus,
+.sidenav__item:hover {
+	background-color: var(--clr-primary);
+}

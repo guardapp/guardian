@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { Redirect } from 'react-router-dom';
+
+import { useAuth, ACTIONS } from '../utils/auth';
 
 import Center from '../layouts/Center';
-// import Row from "../layouts/Row";
-// import Input from '../components/Input';
+import Notification from '../components/Notification';
 
 const loginFormSchema = yup.object().shape({
 	email: yup
@@ -16,18 +19,45 @@ const loginFormSchema = yup.object().shape({
 });
 
 export default function Login() {
+	const [notification, notify] = useState({});
+	const [auth, dispatch] = useAuth();
+
+	if (auth.token) return <Redirect to="/users"></Redirect>;
+
 	return (
-		<main>
+		<main className="login">
 			<h1>Admin Console</h1>
 			<Center>
 				<Formik
 					initialValues={{ email: '', password: '' }}
 					validationSchema={loginFormSchema}
-					onSubmit={(values, { setSubmitting }) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
+					onSubmit={async (values, { setSubmitting }) => {
+						try {
+							if (notification.show) {
+								notify(false);
+							}
+							const response = await fetch('http://192.168.1.160:8080/login', {
+								method: 'POST',
+								mode: 'cors',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(values)
+							});
+
+							const body = await response.json();
+							if (body.error) {
+								notify({ show: true, message: body.error });
+							} else {
+								dispatch({ type: ACTIONS.LOGIN, token: body.token });
+								window.location = '/users';
+							}
+						} catch (err) {
+							console.error(err);
+							notify({ show: true, message: 'Connection Error!' });
+						} finally {
 							setSubmitting(false);
-						}, 400);
+						}
 					}}
 				>
 					{({ isSubmitting, errors, isValid }) => (
@@ -51,6 +81,9 @@ export default function Login() {
 					)}
 				</Formik>
 			</Center>
+			<Notification show={notification.show}>
+				<span>{notification.message}</span>
+			</Notification>
 		</main>
 	);
 }
