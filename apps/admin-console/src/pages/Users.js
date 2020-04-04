@@ -35,16 +35,34 @@ export default function Users() {
 	if (!state.token) {
 		return <Redirect to="/" />;
 	}
+
+	if (loading) {
+		return (
+			<section className="users">
+				<h1>Users</h1>
+				<Spinner active={loading}></Spinner>
+			</section>
+		);
+	}
+
+	if (error) {
+		return (
+			<section className="users">
+				<h1>Users</h1>
+				<div className="users__content"></div>
+				<Notification show>
+					<span>{error && error.message}</span>
+				</Notification>
+			</section>
+		);
+	}
+
 	return (
 		<section className="users">
 			<h1>Users</h1>
 			<div className="users__content">
-				<Table headers={HEADERS} rows={loading ? [] : data.users.data}></Table>
+				<Table headers={HEADERS} rows={data.users.data}></Table>
 			</div>
-			<Spinner active={loading}></Spinner>
-			<Notification show={error}>
-				<span>{error && error.message}</span>
-			</Notification>
 		</section>
 	);
 }
