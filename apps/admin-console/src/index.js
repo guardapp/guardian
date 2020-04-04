@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+window.BACKEND = 'http://192.168.1.161:8080';
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App />

@@ -9,9 +9,13 @@
 :root {
 	--clr-primary: #c7406b;
 	--clr-primary-dark: #1a0d1b;
+	--clr-primary-light: #321933;
 	--clr-secondary: #cc8757;
 	--clr-trinary: #b995a4;
 	--clr-light: #f7f7f5;
+
+	--shadow: 8px 8px 16px black, -3px -3px 12px var(--clr-primary-light);
+	--shadow-in: inset 3px 3px 16px black, inset -3px -3px 16px var(--clr-primary-light);
 }
 
 body {
@@ -29,60 +33,59 @@ main {
 
 input {
 	color: var(--clr-secondary);
+	background: none;
+	box-shadow: var(--shadow-in);
+
 	font-size: 1em;
 	font-weight: bold;
 	display: inline-block;
 	line-height: 2.5;
-	border: none;
 	border-radius: 0.3rem;
 	width: 20rem;
 	outline: none;
-	padding: 0 0.5rem;
-	border: transparent solid 2px;
+	padding: 0 1rem;
+	border: none;
 	transition: border 0.3s ease-in;
 }
 
-input:focus {
-	border: var(--clr-primary) solid 2px;
+input::placeholder {
+	color: var(--clr-primary-light);
 }
 
 input.gap {
 	margin-bottom: 2rem;
 }
 
-input.error {
-	border: var(--clr-primary) solid 2px;
-	border-right-width: thick;
-}
-
 div.error {
 	color: var(--clr-primary);
 }
 
-button[type='submit'] {
+button {
+	width: 6rem;
+	height: 2rem;
+	background: var(--clr-trinary);
+	box-shadow: var(--shadow);
+	border: none;
 	color: var(--clr-light);
-	text-transform: uppercase;
 	font-family: inherit;
-	font-size: 1em;
-	background-color: transparent;
-	border: var(--clr-primary) solid 2px;
-	width: 10rem;
-	padding: 0.5rem 1rem;
-	border-radius: 0.3rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	outline: none;
+	border-radius: 1rem;
+	transition: 0.5s;
 	cursor: pointer;
-	transition: background-color 0.3s ease-in;
 }
 
-button[type='submit']:hover {
-	background-color: var(--clr-primary);
+button:hover {
+	background: #efcddb;
 }
 
-button[type='submit']:disabled {
-	color: var(--clr-trinary);
-	border-color: var(--clr-trinary);
+button:active {
+	background: var(--clr-primary);
 }
 
-button[type='submit']:disabled:hover {
+button:disabled {
 	background-color: inherit;
 	cursor: not-allowed;
+	box-shadow: none;
 }

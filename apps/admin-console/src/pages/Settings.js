@@ -1,12 +1,18 @@
 import React from 'react';
+import './Settings.css';
 import { Redirect } from 'react-router-dom';
 
-import { useAuth } from '../utils/auth';
+import { useAuth, ACTIONS } from '../utils/auth';
 
 export default function Users() {
-	const [state] = useAuth();
+	const [state, dispatch] = useAuth();
 	if (!state.token) {
 		return <Redirect to="/" />;
 	}
-	return <h1>Settings</h1>;
+	return (
+		<section className="settings">
+			<h2>Settings</h2>
+			<button onClick={() => dispatch({ type: ACTIONS.LOGOUT })}>Logout</button>
+		</section>
+	);
 }

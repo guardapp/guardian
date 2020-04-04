@@ -5,3 +5,11 @@
 main {
 	flex: 1;
 }
+
+.title {
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.5rem;
+	text-shadow: -1px -1px 2px var(--clr-light), 1px 1px #7b4b29;
+	color: var(--clr-secondary);
+}

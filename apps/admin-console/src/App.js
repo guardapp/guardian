@@ -20,13 +20,13 @@ function App() {
 	const [{ token }] = useAuth();
 
 	const client = new ApolloClient({
-		uri: 'http://192.168.1.161:8080/graphql',
+		uri: `${window.BACKEND}/graphql`,
 		fetchOptions: {
-			mode: 'cors'
+			mode: 'cors',
 		},
 		headers: {
-			Authorization: `Bearer ${token}`
-		}
+			Authorization: `Bearer ${token}`,
+		},
 	});
 	return (
 		<ApolloProvider client={client}>
@@ -81,7 +81,10 @@ function Shell({ children }) {
 	return (
 		<>
 			<SideNav></SideNav>
-			<main className="main">{children}</main>
+			<main className="main">
+				<h1 className="title">Admin Console</h1>
+				{children}
+			</main>
 		</>
 	);
 }

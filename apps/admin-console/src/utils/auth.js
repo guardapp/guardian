@@ -1,7 +1,8 @@
 import { useReducer } from 'react';
 
 export const ACTIONS = {
-	LOGIN: 'LOGIN'
+	LOGIN: 'LOGIN',
+	LOGOUT: 'LOGOUT',
 };
 
 function reducer(state, action) {
@@ -11,6 +12,9 @@ function reducer(state, action) {
 		case ACTIONS.LOGIN:
 			window.localStorage.setItem('token', action.token);
 			return { token: action.token };
+		case ACTIONS.LOGOUT:
+			window.localStorage.removeItem('token');
+			return { token: null };
 		default:
 			throw new Error(`no such action "${action.type}"`);
 	}

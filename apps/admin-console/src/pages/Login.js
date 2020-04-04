@@ -11,11 +11,8 @@ import Center from '../layouts/Center';
 import Notification from '../components/Notification';
 
 const loginFormSchema = yup.object().shape({
-	email: yup
-		.string()
-		.email()
-		.required(),
-	password: yup.string().required()
+	email: yup.string().email().required(),
+	password: yup.string().required(),
 });
 
 export default function Login() {
@@ -36,13 +33,13 @@ export default function Login() {
 							if (notification.show) {
 								notify(false);
 							}
-							const response = await fetch('http://192.168.1.160:8080/login', {
+							const response = await fetch(`${window.BACKEND}/login`, {
 								method: 'POST',
 								mode: 'cors',
 								headers: {
-									'Content-Type': 'application/json'
+									'Content-Type': 'application/json',
 								},
-								body: JSON.stringify(values)
+								body: JSON.stringify(values),
 							});
 
 							const body = await response.json();
@@ -61,17 +58,19 @@ export default function Login() {
 					}}
 				>
 					{({ isSubmitting, errors, isValid }) => (
-						<Form>
+						<Form autoComplete="off">
 							<ErrorMessage className="error" name="email" component="div" />
 							<Field
 								type="email"
 								name="email"
+								placeholder="email"
 								className={errors && errors.email ? 'gap error' : 'gap'}
 							/>
 							<ErrorMessage className="error" name="password" component="div" />
 							<Field
 								type="password"
 								name="password"
+								placeholder="password"
 								className={errors && errors.password ? 'gap error' : 'gap'}
 							/>
 							<button type="submit" disabled={isSubmitting || !isValid}>

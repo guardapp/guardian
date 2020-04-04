@@ -8,7 +8,7 @@ h1 {
 }
 
 form {
-	background-color: #271629;
+	box-shadow: var(--shadow);
 	border-radius: 1rem;
 	padding: 2rem;
 

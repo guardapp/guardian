@@ -1,0 +1,26 @@
+.settings {
+	width: 80%;
+	margin: 3rem auto;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	display: grid;
+	padding: 0.5rem 2rem 2rem 2rem;
+}
+
+.settings > * {
+	margin-top: 1rem;
+}
+
+.settings h2 {
+	text-align: center;
+	color: var(--clr-secondary);
+}
+
+.settings__content {
+	width: 80%;
+	border-radius: 0.5rem;
+	height: 50vh;
+	box-shadow: var(--shadow);
+	display: grid;
+	padding: 2rem;
+}

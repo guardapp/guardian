@@ -1,0 +1,19 @@
+.spinner svg {
+	width: 6rem;
+	height: 6rem;
+	stroke: var(--clr-light);
+
+	z-index: 1001;
+}
+
+.spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+	background-color: #58585866;
+
+	z-index: 1000;
+}

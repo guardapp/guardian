@@ -1,4 +1,5 @@
 import React from 'react';
+import './Users.css';
 import { Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -9,9 +10,9 @@ import Notification from '../components/Notification';
 
 import { useAuth } from '../utils/auth';
 
-const ALL_USERS = gql`
-	{
-		users {
+const ALL_ADMINS = gql`
+	query GetAllAdmins {
+		users(role: ADMIN) {
 			data {
 				id
 				email
@@ -24,20 +25,22 @@ const ALL_USERS = gql`
 
 const HEADERS = [
 	{ name: 'ID', field: 'id' },
-	{ name: 'Email', field: 'email' }
+	{ name: 'Email', field: 'email' },
 ];
 
 export default function Users() {
 	const [state] = useAuth();
-	const { loading, error, data } = useQuery(ALL_USERS);
+	const { loading, error, data } = useQuery(ALL_ADMINS);
 
 	if (!state.token) {
 		return <Redirect to="/" />;
 	}
 	return (
-		<section>
+		<section className="users">
 			<h1>Users</h1>
-			<Table headers={HEADERS} rows={loading ? [] : data.users.data || []}></Table>
+			<div className="users__content">
+				<Table headers={HEADERS} rows={loading ? [] : data.users.data}></Table>
+			</div>
 			<Spinner active={loading}></Spinner>
 			<Notification show={error}>
 				<span>{error && error.message}</span>
