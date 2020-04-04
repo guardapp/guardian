@@ -11,51 +11,69 @@ import Classes from './pages/Classes';
 import Kindergarten from './pages/Kindergarten';
 import Settings from './pages/Settings';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+import { useAuth } from './utils/auth';
+
 function App() {
+	const [{ token }] = useAuth();
+
+	const client = new ApolloClient({
+		uri: 'http://192.168.1.161:8080/graphql',
+		fetchOptions: {
+			mode: 'cors'
+		},
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	});
 	return (
-		<Router>
-			<Route path="/" exact component={Login} />
-			<Route
-				path="/users"
-				render={() => (
-					<Shell>
-						<Users />
-					</Shell>
-				)}
-			/>
-			<Route
-				path="/children"
-				render={() => (
-					<Shell>
-						<Children />
-					</Shell>
-				)}
-			/>
-			<Route
-				path="/classes"
-				render={() => (
-					<Shell>
-						<Classes />
-					</Shell>
-				)}
-			/>
-			<Route
-				path="/kindergarten"
-				render={() => (
-					<Shell>
-						<Kindergarten />
-					</Shell>
-				)}
-			/>
-			<Route
-				path="/settings"
-				render={() => (
-					<Shell>
-						<Settings />
-					</Shell>
-				)}
-			/>
-		</Router>
+		<ApolloProvider client={client}>
+			<Router>
+				<Route path="/" exact component={Login} />
+				<Route
+					path="/users"
+					render={() => (
+						<Shell>
+							<Users />
+						</Shell>
+					)}
+				/>
+				<Route
+					path="/children"
+					render={() => (
+						<Shell>
+							<Children />
+						</Shell>
+					)}
+				/>
+				<Route
+					path="/classes"
+					render={() => (
+						<Shell>
+							<Classes />
+						</Shell>
+					)}
+				/>
+				<Route
+					path="/kindergarten"
+					render={() => (
+						<Shell>
+							<Kindergarten />
+						</Shell>
+					)}
+				/>
+				<Route
+					path="/settings"
+					render={() => (
+						<Shell>
+							<Settings />
+						</Shell>
+					)}
+				/>
+			</Router>
+		</ApolloProvider>
 	);
 }
 

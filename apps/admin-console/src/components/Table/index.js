@@ -1,19 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import './style.css';
 
-const headers = [
-	{ name: 'h1', field: 'a' },
-	{ name: 'h2', field: 'b' },
-	{ name: 'h3', field: 'c' },
-	{ name: 'h4', field: 'd' }
-];
-
-const data = [
-	{ id: 1, a: 1, b: 'aaa', c: 11, d: 111 },
-	{ id: 2, a: 2, b: 'bbb', c: 22 },
-	{ id: 3, a: 3, b: 'ccc', d: 333 }
-];
-
 function sort(data, sortBy, isASC) {
 	return data.sort((r1, r2) => {
 		if (r1[sortBy] < r2[sortBy]) return isASC ? -1 : 1;
@@ -25,20 +12,20 @@ function sort(data, sortBy, isASC) {
 function reducer(state, action) {
 	switch (action.type) {
 		case 'SORT':
-			return { rows: sort(data, action.field, action.dir) };
+			return { rows: sort(state.rows, action.field, action.dir) };
 		default:
 			return state;
 	}
 }
 
-export default function Table() {
-	const initial = { rows: data };
+export default function Table(props) {
+	const initial = { rows: props.rows };
 	const [state, dispatch] = useReducer(reducer, initial);
 	return (
-		<div className="table" style={{ gridTemplateColumns: `repeat(${headers.length}, 1fr)` }}>
-			{headers && <TableRowHeader headers={headers} onSort={dispatch}></TableRowHeader>}
+		<div className="table" style={{ gridTemplateColumns: `repeat(${props.headers.length}, 1fr)` }}>
+			{props.headers && <TableRowHeader headers={props.headers} onSort={dispatch}></TableRowHeader>}
 			{state.rows.map(row => (
-				<TableRowData key={row.id} row={row} headers={headers}></TableRowData>
+				<TableRowData key={row.id} row={row} headers={props.headers}></TableRowData>
 			))}
 		</div>
 	);
