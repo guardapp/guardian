@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+import Table from '../components/Table';
+
 import { useAuth } from '../utils/auth';
 
 export default function Users() {
@@ -8,5 +10,10 @@ export default function Users() {
 	if (!state.token) {
 		return <Redirect to="/" />;
 	}
-	return <h1>Users</h1>;
+	return (
+		<section>
+			<h1>Users</h1>
+			<Table></Table>
+		</section>
+	);
 }

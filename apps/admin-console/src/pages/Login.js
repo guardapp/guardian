@@ -3,6 +3,7 @@ import './Login.css';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { Redirect } from 'react-router-dom';
 
 import { useAuth, ACTIONS } from '../utils/auth';
 
@@ -19,7 +20,9 @@ const loginFormSchema = yup.object().shape({
 
 export default function Login() {
 	const [notification, notify] = useState({});
-	const [_, dispatch] = useAuth();
+	const [auth, dispatch] = useAuth();
+
+	if (auth.token) return <Redirect to="/users"></Redirect>;
 
 	return (
 		<main className="login">
