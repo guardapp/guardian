@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/config",
-  "version": "0.1.45",
+  "version": "0.1.46",
   "description": "Centralize of configuration sources",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
