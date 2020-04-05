@@ -14,6 +14,9 @@ export default function TableRowHeader(props) {
 					setColSortActive(idx);
 					props.onSort(e);
 				}}
+				onSearch={props.onSearch}
+				onAddFilter={props.onAddFilter}
+				onReset={props.onReset}
 			></TableCellHeader>
 		);
 	});

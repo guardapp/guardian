@@ -11,7 +11,13 @@ export default function TableCellHeader(props) {
 		<div className="table__cell table__cell--header">
 			<div>{props.header.name}</div>
 			<div className="table__actions">
-				<SearchIcon />
+				<SearchIcon
+					onSearch={(term) => props.onSearch({ type: 'SEARCH', term, field: props.header.field })}
+					onEnter={(term) =>
+						props.onAddFilter({ type: 'ADD_FILTER', term, field: props.header.field })
+					}
+					onReset={props.onReset}
+				/>
 				<SortIcon
 					dir={dir}
 					onClick={() => {
