@@ -13,7 +13,8 @@
 
 	width: 100%;
 	height: 100%;
-	background-color: #58585866;
+	margin: 0;
+	background-color: #000000a3;
 
 	z-index: 1000;
 }

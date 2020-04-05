@@ -4,7 +4,8 @@
 	align-items: center;
 
 	height: 100vh;
-	background: var(--clr-trinary);
+	/* background: var(--clr-trinary); */
+	box-shadow: 3px 0px 16px black;
 }
 
 .sidenav__item {
@@ -19,14 +20,14 @@
 }
 
 .sidenav__item--active {
-	background-color: var(--clr-primary);
+	/* background-color: var(--clr-primary); */
+	box-shadow: inset 8px 8px 16px black, inset -8px -8px 16px var(--clr-primary-light);
 }
 
 .sidenav__item--bottom {
 	margin-top: auto;
 }
 
-.sidenav__item:focus,
-.sidenav__item:hover {
-	background-color: var(--clr-primary);
+.sidenav__item:not(.sidenav__item--active):hover {
+	box-shadow: var(--shadow);
 }
