@@ -56,3 +56,52 @@
 .table__filter:hover .table__filter__delete {
 	opacity: 1;
 }
+
+.table__row {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.table__row.hover {
+	box-shadow: var(--shadow);
+}
+
+.table__row:hover {
+	box-shadow: var(--shadow);
+}
+
+.table__cell {
+	background: none;
+	color: var(--clr-trinary);
+	padding: 0.5rem 0;
+	border-radius: 0.3rem;
+}
+
+.table__cell--header {
+	box-shadow: var(--shadow-in);
+	position: relative;
+}
+
+.table__cell--header:focus,
+.table__cell--header:hover {
+	background: var(--clr-primary-dark);
+}
+
+.table__actions {
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: calc(50% - 1rem);
+	display: flex;
+	align-items: center;
+}
+
+.table__actions .material-icons {
+	font-size: 1.1rem;
+	margin-right: 0.5rem;
+}
+
+.table__actions .material-icons:hover {
+	color: var(--clr-secondary);
+}
