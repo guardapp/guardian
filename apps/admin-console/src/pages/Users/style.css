@@ -1,0 +1,36 @@
+.users {
+	display: flex;
+	flex-direction: column;
+}
+
+.users > * {
+	margin-top: 1rem;
+}
+
+.users__content {
+	width: 80%;
+	margin: 1rem auto;
+	box-shadow: var(--shadow);
+}
+
+.users__tabs {
+	display: flex;
+	padding: 1rem;
+}
+
+.users__tab {
+	cursor: pointer;
+	margin-right: 1rem;
+	box-shadow: var(--shadow);
+	padding: 0.5rem 1rem;
+	border-radius: 0.4rem;
+	transition: box-shadow 0.3s;
+}
+
+.users__tab:not(.users__tab--active):hover {
+	box-shadow: var(--shadow-hover);
+}
+
+.users__tab--active {
+	box-shadow: none;
+}

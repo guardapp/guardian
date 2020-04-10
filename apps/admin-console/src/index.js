@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-window.BACKEND = 'http://192.168.1.161:8080';
+window.BACKEND = 'http://localhost:8080';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
+	// <React.StrictMode>
+	<App />,
+	// </React.StrictMode>
 	document.getElementById('root')
 );
 

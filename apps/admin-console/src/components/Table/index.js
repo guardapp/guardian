@@ -1,13 +1,25 @@
 import React, { useReducer } from 'react';
 import './style.css';
+import { useInView } from 'react-intersection-observer';
 
 import TableRowHeader from './components/TableRowHeader';
 import TableRowData from './components/TableRowData';
 
+function isNumber(num) {
+	const val = Number.parseInt(num);
+	return !Number.isNaN(val);
+}
+
 function sort(data, sortBy, isASC) {
 	return data.sort((r1, r2) => {
-		if (r1[sortBy] < r2[sortBy]) return isASC ? -1 : 1;
-		if (r1[sortBy] > r2[sortBy]) return isASC ? 1 : -1;
+		let val1 = r1[sortBy];
+		let val2 = r2[sortBy];
+		if (isNumber(val1) && isNumber(val2)) {
+			val1 = +val1;
+			val2 = +val2;
+		}
+		if (val1 < val2) return isASC ? -1 : 1;
+		if (val1 > val2) return isASC ? 1 : -1;
 		return 0;
 	});
 }
@@ -77,6 +89,11 @@ function reducer(state, action) {
 
 export default function Table(props) {
 	const [state, dispatch] = useReducer(reducer, props.rows, reset);
+	const [ref, inView] = useInView();
+	if (inView && props.hasMore) {
+		props.onLoadMore();
+	}
+
 	return (
 		<>
 			<div className="table__filters">
@@ -111,6 +128,7 @@ export default function Table(props) {
 				{state.rows.map((row) => (
 					<TableRowData key={row.id} row={row} headers={props.headers}></TableRowData>
 				))}
+				<div className="table__end" ref={ref}></div>
 			</div>
 		</>
 	);
