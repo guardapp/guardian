@@ -13,54 +13,9 @@
 	grid-column: 1 / -1;
 }
 
-.table__filters {
-	display: flex;
-	margin: 1rem;
-}
-
-.table__filter {
-	display: flex;
-	align-items: center;
-	box-shadow: var(--shadow-in);
-	padding: 0.1rem 0 0.1rem 1rem;
-	border-radius: 0.4rem;
-	margin-right: 1rem;
-	transition: 0.5s ease-out;
-}
-
-.table__filter:hover {
-	box-shadow: none;
-	padding: 0.1rem 1rem;
-}
-
-.table__filter__term {
-	color: var(--clr-primary);
-	margin-right: 0.5rem;
-}
-
-.table__filter__field {
-	color: var(--clr-primary-light);
-}
-
-.table__filter:hover .table__filter__field {
-	margin-right: 0.5rem;
-}
-
-.table__filter__delete {
-	cursor: pointer;
-	font-size: 1.1rem;
-	opacity: 0;
-	transition: 0.5s ease-out;
-}
-
-.table__filter:hover .table__filter__delete {
-	opacity: 1;
-}
-
 .table__row {
 	grid-column: 1 / -1;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
 }
 
 .table__row.hover {
