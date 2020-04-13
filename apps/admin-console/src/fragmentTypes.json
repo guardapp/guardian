@@ -1,0 +1,45 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "User",
+        "possibleTypes": [
+          {
+            "name": "Parent"
+          },
+          {
+            "name": "Teacher"
+          },
+          {
+            "name": "Principal"
+          },
+          {
+            "name": "Admin"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "AddUserResult",
+        "possibleTypes": [
+          {
+            "name": "EmailExists"
+          },
+          {
+            "name": "Admin"
+          },
+          {
+            "name": "Parent"
+          },
+          {
+            "name": "Teacher"
+          },
+          {
+            "name": "Principal"
+          }
+        ]
+      }
+    ]
+  }
+}

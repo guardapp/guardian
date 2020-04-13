@@ -13,13 +13,21 @@ import Settings from './pages/Settings';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import introspectionQueryResultData from './fragmentTypes.json';
 
 import { useAuth } from './utils/auth';
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+	introspectionQueryResultData,
+});
+const cache = new InMemoryCache({ fragmentMatcher });
 
 function App() {
 	const [{ token }] = useAuth();
 
 	const client = new ApolloClient({
+		cache,
 		uri: `${window.BACKEND}/graphql`,
 		fetchOptions: {
 			mode: 'cors',

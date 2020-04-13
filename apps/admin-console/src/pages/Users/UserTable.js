@@ -7,10 +7,18 @@ import Spinner from '../../components/Spinner';
 import Notification from '../../components/Notification';
 
 const ALL_USERS_IN_ROLE = gql`
+	fragment principal on Principal {
+		kindergarten {
+			id
+			name
+		}
+	}
+
 	query GetAllAdmins($role: Role!, $offset: Int!) {
 		users(role: $role, paginate: { limit: 100, offset: $offset }) {
 			id
 			email
+			...principal
 		}
 	}
 `;
@@ -60,6 +68,8 @@ export default function UserTable({ role }) {
 			</Notification>
 		);
 	}
+
+	console.log(data);
 
 	return (
 		<Table columns={columns} data={data.users} hasMore={hasMore} fetchMore={fetchMoreUsers}></Table>

@@ -10,7 +10,7 @@ import Table from '../components/TableNew';
 import Spinner from '../components/Spinner';
 
 const ALL_USERS_IN_ROLE = gql`
-	query GetAllAdmins($role: Role!, $offset: Int!) {
+	query GetAllAdmins2($role: Role!, $offset: Int!) {
 		users(role: $role, paginate: { limit: 10, offset: $offset }) {
 			id
 			email

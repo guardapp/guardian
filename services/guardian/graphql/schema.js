@@ -54,7 +54,7 @@ module.exports = gql`
 	type Principal implements User {
 		id: ID!
 		email: String!
-		kindergarten: [String]
+		kindergarten: Kindergarten
 	}
 
 	type Child {

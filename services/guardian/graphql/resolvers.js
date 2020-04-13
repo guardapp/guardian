@@ -59,6 +59,11 @@ module.exports = {
 			return await models.child.loaderByParent.load(parent.id);
 		},
 	},
+	Principal: {
+		kindergarten: (parent, _, { models }) => {
+			return models.kindergarten.kindergartenPrincipalLoader.load(parent.id);
+		},
+	},
 	Child: {
 		parent: (child) => {
 			return child.getParent();
