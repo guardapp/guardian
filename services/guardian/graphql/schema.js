@@ -1,4 +1,5 @@
-const { gql } = require('@guardapp/server');
+/* eslint no-tabs: 0 */ // --> OFF
+const {gql} = require('@guardapp/server');
 
 module.exports = gql`
 	input PaginateInput {

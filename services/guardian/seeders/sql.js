@@ -6,21 +6,21 @@ const KINDERGARTENS_COUNT = 50;
 const CLASSES_COUNT = KINDERGARTENS_COUNT * 3;
 const CHILDREN_COUNT = CLASSES_COUNT * 10;
 
-module.exports = async sequelize => {
+module.exports = async (sequelize) => {
   let roles = null;
   let users = null;
   let children = null;
   let kindergartens = null;
   let classes = null;
-  await sequelize.transaction(async transaction => {
+  await sequelize.transaction(async (transaction) => {
     // add roles
-    const roleNames = ROLES.map(role => ({name: role}));
+    const roleNames = ROLES.map((role) => ({name: role}));
     roles = await sequelize.models.role.bulkCreate(roleNames, {transaction});
 
     // add users
     const fakeUsers = new Array(USERS_COUNT).fill(0).map(() => ({
       email: faker.internet.email(),
-      password: '1234'
+      password: '1234',
     }));
     users = await sequelize.models.user.bulkCreate(fakeUsers, {transaction});
 
@@ -28,7 +28,7 @@ module.exports = async sequelize => {
     const childrenModels = new Array(CHILDREN_COUNT).fill(0).map(() => ({
       name: faker.name.firstName(),
       profile: faker.internet.avatar(),
-      age: faker.random.number({min: 1, max: 5, precision: 2})
+      age: faker.random.number({min: 1, max: 5, precision: 2}),
     }));
     children = await sequelize.models.child.bulkCreate(childrenModels, {transaction});
 
@@ -37,14 +37,16 @@ module.exports = async sequelize => {
       name: faker.company.companyName(),
       city: faker.address.city(),
       address: faker.address.streetAddress(),
-      country: faker.address.country()
+      country: faker.address.country(),
     }));
-    kindergartens = await sequelize.models.kindergarten.bulkCreate(kindergartensModel, {transaction});
+    kindergartens = await sequelize.models.kindergarten.bulkCreate(kindergartensModel, {
+      transaction,
+    });
 
     // add classes
     const classModels = new Array(CLASSES_COUNT).fill(0).map(() => ({
       name: faker.company.catchPhrase(),
-      capacity: 20
+      capacity: 20,
     }));
     classes = await sequelize.models.class.bulkCreate(classModels, {transaction});
   });
