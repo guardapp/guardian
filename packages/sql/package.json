@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/sql",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "description": "Abstraction layer to interact with a SQL DBs",
   "author": "amirz <amirzahavi90@gmail.com>",
   "homepage": "https://github.com/guardapp/guardian#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/guardapp/guardian/issues"
   },
   "dependencies": {
-    "@guardapp/config": "^0.1.47",
-    "@guardapp/logger": "^0.1.47",
+    "@guardapp/config": "^0.1.48",
+    "@guardapp/logger": "^0.1.48",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5"
   }
