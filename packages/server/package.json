@@ -1,6 +1,6 @@
 {
   "name": "@guardapp/server",
-  "version": "0.1.48",
+  "version": "0.1.49",
   "description": "basic express server",
   "keywords": [],
   "author": "amirz <amirzahavi90@gmail.com>",
@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/guardapp/guardian#readme",
   "dependencies": {
-    "@guardapp/config": "^0.1.48",
-    "@guardapp/logger": "^0.1.48",
-    "@guardapp/sql": "^0.1.48",
+    "@guardapp/config": "^0.1.49",
+    "@guardapp/logger": "^0.1.49",
+    "@guardapp/sql": "^0.1.49",
     "apollo-server-express": "^2.11.0",
     "body-parser": "^1.19.0",
     "dataloader": "^2.0.0",
